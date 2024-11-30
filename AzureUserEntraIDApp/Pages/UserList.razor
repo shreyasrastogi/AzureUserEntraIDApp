@@ -1,4 +1,5 @@
 ﻿@page "/userlist"
+@page "/userlist/{showEditOnly:bool?}/{showDisableOnly:bool?}/{showDeleteOnly:bool?}"
 @using System.Net.Http
 @using System.Net.Http.Json
 @inject HttpClient Http
@@ -33,9 +34,24 @@ else
                     <td>@user.MailNickname</td>
                     <td>@user.UserPrincipalName</td>
                     <td>
-                        <button class="btn btn-primary" @onclick="() => EditUser(user)">Edit</button>
-                        <button class="btn btn-danger" @onclick="() => DeleteUser(user)">Delete</button>
-                        <button class="btn btn-warning" @onclick="() => DisableUser(user)">Disable</button>
+                        @if (showEditOnly == true)
+                        {
+                            <button class="btn btn-primary" @onclick="() => EditUser(user)">Edit</button>
+                        }
+                        else if (showDisableOnly == true)
+                        {
+                            <button class="btn btn-warning" @onclick="() => DisableUser(user)">Disable</button>
+                        }
+                        else if (showDeleteOnly == true)
+                        {
+                            <button class="btn btn-danger" @onclick="() => DeleteUser(user)">Delete</button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-primary" @onclick="() => EditUser(user)">Edit</button>
+                            <button class="btn btn-warning" @onclick="() => DisableUser(user)">Disable</button>
+                            <button class="btn btn-danger" @onclick="() => DeleteUser(user)">Delete</button>
+                        }
                     </td>
                 </tr>
             }
@@ -44,6 +60,13 @@ else
 }
 
 @code {
+    [Parameter]
+    public bool? showEditOnly { get; set; }
+    [Parameter]
+    public bool? showDisableOnly { get; set; }
+    [Parameter]
+    public bool? showDeleteOnly { get; set; }
+
     private List<User> users;
 
     protected override async Task OnInitializedAsync()
@@ -80,5 +103,4 @@ else
         public string UserPrincipalName { get; set; }
     }
 }
-
 
