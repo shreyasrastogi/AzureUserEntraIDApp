@@ -1,0 +1,60 @@
+﻿@page "/edituser/{userPrincipalName}"
+@using System.Net.Http
+@using System.Net.Http.Json
+@inject HttpClient Http
+@inject NavigationManager Navigation
+@code {
+    [Parameter]
+    public string userPrincipalName { get; set; }
+
+    private User user = new User();
+
+    protected override async Task OnInitializedAsync()
+    {
+        user = await Http.GetFromJsonAsync<User>($"/api/GetUser/{userPrincipalName}");
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        var response = await Http.PutAsJsonAsync("/api/UpdateUser", user);
+        if (response.IsSuccessStatusCode)
+        {
+            Navigation.NavigateTo("/userlist");
+        }
+        else
+        {
+            // Handle error
+        }
+    }
+
+    public class User
+    {
+        public string DisplayName { get; set; }
+        public string MailNickname { get; set; }
+        public string UserPrincipalName { get; set; }
+    }
+}
+
+<h3>Edit User</h3>
+
+<EditForm Model="user" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="displayName" class="form-label">Display Name</label>
+        <InputText id="displayName" class="form-control" @bind-Value="user.DisplayName" />
+    </div>
+    <div class="mb-3">
+        <label for="mailNickname" class="form-label">Mail Nickname</label>
+        <InputText id="mailNickname" class="form-control" @bind-Value="user.MailNickname" />
+    </div>
+    <div class="mb-3">
+        <label for="userPrincipalName" class="form-label">User Principal Name</label>
+        <InputText id="userPrincipalName" class="form-control" @bind-Value="user.UserPrincipalName" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update User</button>
+</EditForm>
+
+
