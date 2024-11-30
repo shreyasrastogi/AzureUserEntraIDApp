@@ -65,8 +65,7 @@ else
 
     private void DeleteUser(User user)
     {
-        // Implement delete user logic here
-        Console.WriteLine($"Delete user: {user.DisplayName}");
+        Navigation.NavigateTo($"/deleteuser/{user.UserPrincipalName}");
     }
 
     private void DisableUser(User user)

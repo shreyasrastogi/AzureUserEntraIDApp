@@ -1,0 +1,53 @@
+﻿@page "/deleteuser/{userPrincipalName}"
+@using System.Net.Http
+@using System.Net.Http.Json
+@inject HttpClient Http
+@inject NavigationManager Navigation
+@code {
+    [Parameter]
+    public string userPrincipalName { get; set; }
+
+    private User user = new User();
+
+    protected override async Task OnInitializedAsync()
+    {
+        user = await Http.GetFromJsonAsync<User>($"/api/GetUser/{userPrincipalName}");
+    }
+
+    private async Task HandleConfirm()
+    {
+        var response = await Http.DeleteAsync($"/api/DeleteUser/{user.UserPrincipalName}");
+        if (response.IsSuccessStatusCode)
+        {
+            Navigation.NavigateTo("/userlist");
+        }
+        else
+        {
+            // Handle error
+        }
+    }
+
+    public class User
+    {
+        public string DisplayName { get; set; }
+        public string MailNickname { get; set; }
+        public string UserPrincipalName { get; set; }
+    }
+}
+
+<h3>Delete User</h3>
+
+<div class="mb-3">
+    <label for="displayName" class="form-label">Display Name</label>
+    <InputText id="displayName" class="form-control" @bind-Value="user.DisplayName" Disabled />
+</div>
+<div class="mb-3">
+    <label for="mailNickname" class="form-label">Mail Nickname</label>
+    <InputText id="mailNickname" class="form-control" @bind-Value="user.MailNickname" Disabled />
+</div>
+<div class="mb-3">
+    <label for="userPrincipalName" class="form-label">User Principal Name</label>
+    <InputText id="userPrincipalName" class="form-control" @bind-Value="user.UserPrincipalName" Disabled />
+</div>
+
+<button class="btn btn-danger" @onclick="HandleConfirm">Confirm</button>
