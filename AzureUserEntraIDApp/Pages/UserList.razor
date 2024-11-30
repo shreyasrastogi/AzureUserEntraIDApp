@@ -1,5 +1,5 @@
 ﻿@page "/userlist"
-@page "/userlist/{showEditOnly:bool?}/{showDisableOnly:bool?}/{showDeleteOnly:bool?}/{showNoButtons:bool?}/{showActionsColumn:bool?}"
+@page "/userlist/{showEditOnly:bool?}/{showDisableOnly:bool?}/{showDeleteOnly:bool?}/{showNoButtons:bool?}/{showAllButtons:bool?}"
 @using System.Net.Http
 @using System.Net.Http.Json
 @inject HttpClient Http
@@ -23,7 +23,7 @@ else
                 <th>Display Name</th>
                 <th>Mail Nickname</th>
                 <th>User Principal Name</th>
-                @if (showActionsColumn == true)
+                @if (showNoButtons != true)
                 {
                     <th>Actions</th>
                 }
@@ -36,14 +36,10 @@ else
                     <td>@user.DisplayName</td>
                     <td>@user.MailNickname</td>
                     <td>@user.UserPrincipalName</td>
-                    @if (showActionsColumn == true)
+                    @if (showNoButtons != true)
                     {
                         <td>
-                            @if (showNoButtons == true)
-                            {
-                                <!-- No buttons -->
-                            }
-                            else if (showEditOnly == true)
+                            @if (showEditOnly == true)
                             {
                                 <button class="btn btn-primary" @onclick="() => EditUser(user)">Edit</button>
                             }
@@ -55,7 +51,7 @@ else
                             {
                                 <button class="btn btn-danger" @onclick="() => DeleteUser(user)">Delete</button>
                             }
-                            else
+                            else if (showAllButtons == true)
                             {
                                 <button class="btn btn-primary" @onclick="() => EditUser(user)">Edit</button>
                                 <button class="btn btn-warning" @onclick="() => DisableUser(user)">Disable</button>
@@ -79,7 +75,7 @@ else
     [Parameter]
     public bool? showNoButtons { get; set; }
     [Parameter]
-    public bool? showActionsColumn { get; set; }
+    public bool? showAllButtons { get; set; }
 
     private List<User> users;
 
@@ -117,4 +113,5 @@ else
         public string UserPrincipalName { get; set; }
     }
 }
+
 
