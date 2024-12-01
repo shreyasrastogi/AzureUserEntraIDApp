@@ -24,8 +24,8 @@ namespace API.Functions
         {
             _logger = loggerFactory.CreateLogger<UserFeedbackFunction>();
             _httpClient = httpClient;
-             _apiKey = configuration["SentimentAnalysis:ApiKey"];
-             _endpoint = configuration["SentimentAnalysis:Endpoint"];
+             _apiKey = configuration["SentimentAnalysisApiKey"];
+             _endpoint = configuration["SentimentAnalysisEndpoint"];
 
             //_apiKey = "";
             //_endpoint = "";
