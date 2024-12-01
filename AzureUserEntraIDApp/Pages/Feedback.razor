@@ -1,0 +1,83 @@
+﻿@page "/feedback"
+
+@using System.Net.Http.Json
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Web
+@inject HttpClient Http
+
+<PageTitle>Feedback</PageTitle>
+
+<div class="center-content">
+    <h1>Feedback</h1>
+
+    <p>Please provide your feedback below:</p>
+
+    <textarea @bind="feedback.Text" rows="4" cols="50"></textarea>
+    <br />
+    <input @bind="feedback.Email" placeholder="Your Email" />
+    <br />
+    <input @bind="feedback.PhoneNumber" placeholder="Your Phone Number" />
+    <br />
+    <button @onclick="SubmitFeedback">Submit</button>
+
+    @if (!string.IsNullOrEmpty(feedbackResponse))
+    {
+        <p>Feedback Response: @feedbackResponse</p>
+    }
+</div>
+
+<style>
+    .center-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 20px; /* Adjust this value as needed */
+    }
+
+    textarea {
+        width: 300px;
+        margin-bottom: 10px;
+    }
+
+    input {
+        width: 300px;
+        margin-bottom: 10px;
+    }
+
+    button {
+        margin-bottom: 10px;
+    }
+</style>
+
+@code {
+    private UserFeedback feedback = new UserFeedback();
+    private string feedbackResponse = string.Empty;
+
+    private async Task SubmitFeedback()
+    {
+        if (string.IsNullOrEmpty(feedback.Text) || string.IsNullOrEmpty(feedback.Email) || string.IsNullOrEmpty(feedback.PhoneNumber))
+        {
+            feedbackResponse = "Please enter all required information.";
+            return;
+        }
+
+        var response = await Http.PostAsJsonAsync("api/UserFeedback", feedback);
+        if (response.IsSuccessStatusCode)
+        {
+            feedbackResponse = await response.Content.ReadAsStringAsync();
+        }
+        else
+        {
+            feedbackResponse = "Error submitting feedback.";
+        }
+    }
+
+    public class UserFeedback
+    {
+        public string Text { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string PhoneNumber { get; set; } = string.Empty;
+        public string Sentiment { get; set; } = string.Empty;
+    }
+}
