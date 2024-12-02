@@ -65,7 +65,35 @@
         var response = await Http.PostAsJsonAsync("api/UserFeedback", feedback);
         if (response.IsSuccessStatusCode)
         {
-            feedbackResponse = await response.Content.ReadAsStringAsync();
+            try
+            {
+                var result = await response.Content.ReadFromJsonAsync<UserFeedback>();
+                feedbackResponse = $"Feedback submitted successfully: {result.Text}, {result.Email}, {result.PhoneNumber}, {result.Sentiment}";
+
+                // Send the feedback to the database
+                var data = new
+                {
+                    Text = result.Text,
+                    Email = result.Email,
+                    PhoneNumber = result.PhoneNumber,
+                    Sentiment = result.Sentiment
+                };
+
+                var endpoint = "/rest/UserFeedback";
+                var dbResponse = await Http.PostAsJsonAsync(endpoint, data);
+                if (dbResponse.IsSuccessStatusCode)
+                {
+                    feedbackResponse += " and saved to the database.";
+                }
+                else
+                {
+                    feedbackResponse += " but failed to save to the database.";
+                }
+            }
+            catch (Exception ex)
+            {
+                feedbackResponse = $"Error processing response: {ex.Message}";
+            }
         }
         else
         {
@@ -81,3 +109,4 @@
         public string Sentiment { get; set; } = string.Empty;
     }
 }
+

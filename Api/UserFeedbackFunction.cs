@@ -24,11 +24,8 @@ namespace API.Functions
         {
             _logger = loggerFactory.CreateLogger<UserFeedbackFunction>();
             _httpClient = httpClient;
-             _apiKey = configuration["SentimentAnalysisApiKey"];
-             _endpoint = configuration["SentimentAnalysisEndpoint"];
-
-            //_apiKey = "";
-            //_endpoint = "";
+            _apiKey = configuration["SentimentAnalysisApiKey"];
+            _endpoint = configuration["SentimentAnalysisEndpoint"];
         }
 
         [Function("UserFeedback")]
@@ -55,7 +52,8 @@ namespace API.Functions
                 _logger.LogInformation($"Received feedback: Text={userFeedback.Text}, Email={userFeedback.Email}, PhoneNumber={userFeedback.PhoneNumber}, Sentiment={userFeedback.Sentiment}");
 
                 var response = req.CreateResponse(System.Net.HttpStatusCode.OK);
-                await response.WriteStringAsync($"Received feedback: Text={userFeedback.Text}, Email={userFeedback.Email}, PhoneNumber={userFeedback.PhoneNumber}, Sentiment={userFeedback.Sentiment}");
+                var jsonResponse = JsonConvert.SerializeObject(userFeedback);
+                await response.WriteStringAsync(jsonResponse);
                 return response;
             }
             catch (Exception ex)
@@ -73,8 +71,8 @@ namespace API.Functions
             {
                 documents = new[]
                 {
-                    new { id = "1", language = "en", text = text }
-                }
+                        new { id = "1", language = "en", text = text }
+                    }
             };
 
             var request = new HttpRequestMessage(HttpMethod.Post, $"{_endpoint}/text/analytics/v3.0/sentiment")
