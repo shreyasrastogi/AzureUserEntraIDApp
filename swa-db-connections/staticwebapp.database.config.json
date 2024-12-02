@@ -33,7 +33,7 @@
             "source": "dbo.UserFeedback",
             "permissions": [
                 {
-                    "actions": [ "*" ],
+                    "actions": [ "create", "read", "update", "delete" ],
                     "role": "anonymous"
                 }
             ]
