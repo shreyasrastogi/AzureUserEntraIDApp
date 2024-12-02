@@ -5,7 +5,7 @@
         "options": {
             "set-session-context": false
         },
-        "connection-string": "@env('DATABASECONNECTIONSTRING')"
+        "connection-string": "Server=tcp:entrauserinfoserver.database.windows.net,1433;Initial Catalog=UserAdditionalDetails;Persist Security Info=False;User ID=azureuser;Password=India$123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
     },
     "runtime": {
         "rest": {
@@ -29,7 +29,7 @@
         }
     },
     "entities": {
-        "Person": {
+        "UserFeedback": {
             "source": "dbo.UserFeedback",
             "permissions": [
                 {
