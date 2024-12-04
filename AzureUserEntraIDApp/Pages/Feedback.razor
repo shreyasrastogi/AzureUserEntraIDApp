@@ -22,7 +22,12 @@
 
     @if (!string.IsNullOrEmpty(feedbackResponse))
     {
-        <p>Feedback Response: @feedbackResponse</p>
+        <p>Feedback Response:</p>
+        <label>Feedback: @feedback.Text</label>
+        <br />
+        <label>Email: @feedback.Email</label>
+        <br />
+        <label>Phone Number: @feedback.PhoneNumber</label>
     }
 </div>
 
@@ -68,7 +73,8 @@
             try
             {
                 var result = await response.Content.ReadFromJsonAsync<UserFeedback>();
-                feedbackResponse = $"Feedback submitted successfully: {result.Text}, {result.Email}, {result.PhoneNumber}, {result.Sentiment}";
+                // comment response
+                //  feedbackResponse = $"Feedback submitted successfully: {result.Text}, {result.Email}, {result.PhoneNumber}, {result.Sentiment}";
 
                 // Send the feedback to the database
                 var data = new
@@ -109,4 +115,3 @@
         public string Sentiment { get; set; } = string.Empty;
     }
 }
-
