@@ -53,26 +53,48 @@
             try
             {
                 var result = await response.Content.ReadFromJsonAsync<UserFeedback>();
-                feedbackResponse = $"Feedback submitted successfully: {result.Text}, {result.Email}, {result.PhoneNumber}, {result.Sentiment}";
-
-                // Send the feedback to the database
-                var data = new
+                if (result != null)
                 {
-                    usertext = result.Text,
-                    useremail = result.Email,
-                    userphonenumber = result.PhoneNumber,
-                    usersentiment = result.Sentiment,
-                };
+                    // Determine the feedback response based on sentiment
+                    switch (result.Sentiment.ToLower())
+                    {
+                        case "positive":
+                            feedbackResponse = "Thank you for the positive feedback.";
+                            break;
+                        case "neutral":
+                            feedbackResponse = "We will try to provide better services in the future.";
+                            break;
+                        case "negative":
+                            feedbackResponse = "A help desk representative will reach out to you soon to understand the issue and improve your experience.";
+                            break;
+                        default:
+                            feedbackResponse = "Thank you for your feedback.";
+                            break;
+                    }
 
-                var endpoint = "data-api/rest/UserFeedback";
-                var dbResponse = await Http.PostAsJsonAsync(endpoint, data);
-                if (dbResponse.IsSuccessStatusCode)
-                {
-                    feedbackResponse += " and saved to the database.";
+                    // Send the feedback to the database
+                    var data = new
+                    {
+                        usertext = result.Text,
+                        useremail = result.Email,
+                        userphonenumber = result.PhoneNumber,
+                        usersentiment = result.Sentiment,
+                    };
+
+                    var endpoint = "data-api/rest/UserFeedback";
+                    var dbResponse = await Http.PostAsJsonAsync(endpoint, data);
+                    if (dbResponse.IsSuccessStatusCode)
+                    {
+                        feedbackResponse += " and saved to the database.";
+                    }
+                    else
+                    {
+                        feedbackResponse += " but failed to save to the database.";
+                    }
                 }
                 else
                 {
-                    feedbackResponse += " but failed to save to the database.";
+                    feedbackResponse = "Error processing response: result is null.";
                 }
             }
             catch (Exception ex)
