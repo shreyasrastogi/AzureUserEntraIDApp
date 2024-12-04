@@ -7,53 +7,33 @@
 
 <PageTitle>Feedback</PageTitle>
 
-<div class="center-content">
-    <h1>Feedback</h1>
+<h3>Feedback</h3>
 
-    <p>Please provide your feedback below:</p>
+@if (!string.IsNullOrEmpty(feedbackResponse))
+{
+    <div class="alert alert-success" role="alert">
+        @feedbackResponse
+    </div>
+}
 
-    <textarea @bind="feedback.Text" rows="4" cols="50"></textarea>
-    <br />
-    <input @bind="feedback.Email" placeholder="Your Email" />
-    <br />
-    <input @bind="feedback.PhoneNumber" placeholder="Your Phone Number" />
-    <br />
-    <button @onclick="SubmitFeedback">Submit</button>
+<EditForm Model="feedback" OnValidSubmit="SubmitFeedback">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
 
-    @if (!string.IsNullOrEmpty(feedbackResponse))
-    {
-        <p>Feedback Response:</p>
-        <label>Feedback: @feedback.Text</label>
-        <br />
-        <label>Email: @feedback.Email</label>
-        <br />
-        <label>Phone Number: @feedback.PhoneNumber</label>
-    }
-</div>
-
-<style>
-    .center-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        margin-top: 20px; /* Adjust this value as needed */
-    }
-
-    textarea {
-        width: 300px;
-        margin-bottom: 10px;
-    }
-
-    input {
-        width: 300px;
-        margin-bottom: 10px;
-    }
-
-    button {
-        margin-bottom: 10px;
-    }
-</style>
+    <div class="mb-3">
+        <label for="feedbackText" class="form-label">Feedback</label>
+        <textarea id="feedbackText" class="form-control" @bind="feedback.Text" rows="4" cols="50"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input id="email" class="form-control" @bind="feedback.Email" placeholder="Your Email" />
+    </div>
+    <div class="mb-3">
+        <label for="phoneNumber" class="form-label">Phone Number</label>
+        <input id="phoneNumber" class="form-control" @bind="feedback.PhoneNumber" placeholder="Your Phone Number" />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
 
 @code {
     private UserFeedback feedback = new UserFeedback();
@@ -73,16 +53,15 @@
             try
             {
                 var result = await response.Content.ReadFromJsonAsync<UserFeedback>();
-                // comment response
-                //  feedbackResponse = $"Feedback submitted successfully: {result.Text}, {result.Email}, {result.PhoneNumber}, {result.Sentiment}";
+                feedbackResponse = $"Feedback submitted successfully: {result.Text}, {result.Email}, {result.PhoneNumber}, {result.Sentiment}";
 
                 // Send the feedback to the database
                 var data = new
                 {
                     usertext = result.Text,
                     useremail = result.Email,
-                    userphonenumber= result.PhoneNumber,
-                    usersentiment= result.Email,
+                    userphonenumber = result.PhoneNumber,
+                    usersentiment = result.Sentiment,
                 };
 
                 var endpoint = "data-api/rest/UserFeedback";
