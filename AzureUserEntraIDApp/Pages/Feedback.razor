@@ -83,14 +83,6 @@
 
                     var endpoint = "data-api/rest/UserFeedback";
                     var dbResponse = await Http.PostAsJsonAsync(endpoint, data);
-                    if (dbResponse.IsSuccessStatusCode)
-                    {
-                        feedbackResponse += " and saved to the database.";
-                    }
-                    else
-                    {
-                        feedbackResponse += " but failed to save to the database.";
-                    }
                 }
                 else
                 {
