@@ -73,10 +73,10 @@
                 // Send the feedback to the database
                 var data = new
                 {
-                    Text = result.Text,
-                    Email = result.Email,
-                    PhoneNumber = result.PhoneNumber,
-                    Sentiment = result.Sentiment
+                    usertext = result.Text,
+                    useremail = result.Email,
+                    userphonenumber= result.PhoneNumber,
+                    usersentiment= result.Email,
                 };
 
                 var endpoint = "data-api/rest/UserFeedback";
