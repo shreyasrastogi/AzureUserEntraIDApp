@@ -3,39 +3,15 @@
 @using System.Net.Http.Json
 @inject HttpClient Http
 @inject NavigationManager Navigation
-@code {
-    [Parameter]
-    public string userPrincipalName { get; set; }
-
-    private User user = new User();
-
-    protected override async Task OnInitializedAsync()
-    {
-        user = await Http.GetFromJsonAsync<User>($"/api/GetUser/{userPrincipalName}");
-    }
-
-    private async Task HandleConfirm()
-    {
-        var response = await Http.DeleteAsync($"/api/DeleteUser/{user.UserPrincipalName}");
-        if (response.IsSuccessStatusCode)
-        {
-            Navigation.NavigateTo("/userlist");
-        }
-        else
-        {
-            // Handle error
-        }
-    }
-
-    public class User
-    {
-        public string DisplayName { get; set; }
-        public string MailNickname { get; set; }
-        public string UserPrincipalName { get; set; }
-    }
-}
 
 <h3>Delete User</h3>
+
+@if (successMessageVisible)
+{
+    <div class="alert alert-success" role="alert">
+        User Deleted Successfully
+    </div>
+}
 
 <div class="mb-3">
     <label for="displayName" class="form-label">Display Name</label>
@@ -51,3 +27,36 @@
 </div>
 
 <button class="btn btn-danger" @onclick="HandleConfirm">Confirm</button>
+
+@code {
+    [Parameter]
+    public string userPrincipalName { get; set; }
+
+    private User user = new User();
+    private bool successMessageVisible = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        user = await Http.GetFromJsonAsync<User>($"/api/GetUser/{userPrincipalName}");
+    }
+
+    private async Task HandleConfirm()
+    {
+        var response = await Http.DeleteAsync($"/api/DeleteUser/{user.UserPrincipalName}");
+        if (response.IsSuccessStatusCode)
+        {
+            successMessageVisible = true;
+        }
+        else
+        {
+            // Handle error
+        }
+    }
+
+    public class User
+    {
+        public string DisplayName { get; set; }
+        public string MailNickname { get; set; }
+        public string UserPrincipalName { get; set; }
+    }
+}

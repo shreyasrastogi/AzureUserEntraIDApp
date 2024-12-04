@@ -3,39 +3,15 @@
 @using System.Net.Http.Json
 @inject HttpClient Http
 @inject NavigationManager Navigation
-@code {
-    [Parameter]
-    public string userPrincipalName { get; set; }
-
-    private User user = new User();
-
-    protected override async Task OnInitializedAsync()
-    {
-        user = await Http.GetFromJsonAsync<User>($"/api/GetUser/{userPrincipalName}");
-    }
-
-    private async Task HandleValidSubmit()
-    {
-        var response = await Http.PutAsJsonAsync("/api/UpdateUser", user);
-        if (response.IsSuccessStatusCode)
-        {
-            Navigation.NavigateTo("/userlist");
-        }
-        else
-        {
-            // Handle error
-        }
-    }
-
-    public class User
-    {
-        public string DisplayName { get; set; }
-        public string MailNickname { get; set; }
-        public string UserPrincipalName { get; set; }
-    }
-}
 
 <h3>Edit User</h3>
+
+@if (successMessageVisible)
+{
+    <div class="alert alert-success" role="alert">
+        User Updated Successfully
+    </div>
+}
 
 <EditForm Model="user" OnValidSubmit="HandleValidSubmit">
     <DataAnnotationsValidator />
@@ -56,5 +32,38 @@
 
     <button type="submit" class="btn btn-primary">Update User</button>
 </EditForm>
+
+@code {
+    [Parameter]
+    public string userPrincipalName { get; set; }
+
+    private User user = new User();
+    private bool successMessageVisible = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        user = await Http.GetFromJsonAsync<User>($"/api/GetUser/{userPrincipalName}");
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        var response = await Http.PutAsJsonAsync("/api/UpdateUser", user);
+        if (response.IsSuccessStatusCode)
+        {
+            successMessageVisible = true;
+        }
+        else
+        {
+            // Handle error
+        }
+    }
+
+    public class User
+    {
+        public string DisplayName { get; set; }
+        public string MailNickname { get; set; }
+        public string UserPrincipalName { get; set; }
+    }
+}
 
 
