@@ -79,7 +79,7 @@
                     Sentiment = result.Sentiment
                 };
 
-                var endpoint = "/rest/UserFeedback";
+                var endpoint = "data-api/rest/UserFeedback";
                 var dbResponse = await Http.PostAsJsonAsync(endpoint, data);
                 if (dbResponse.IsSuccessStatusCode)
                 {
