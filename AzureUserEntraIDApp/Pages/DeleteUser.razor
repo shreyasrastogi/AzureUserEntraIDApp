@@ -14,16 +14,20 @@
 }
 
 <div class="mb-3">
-    <label for="displayName" class="form-label">Display Name</label>
-    <InputText id="displayName" class="form-control" @bind-Value="user.DisplayName" Disabled />
+    <label for="firstName" class="form-label">First Name</label>
+    <InputText id="firstName" class="form-control" @bind-Value="user.givenName" Disabled />
 </div>
 <div class="mb-3">
-    <label for="mailNickname" class="form-label">Mail Nickname</label>
-    <InputText id="mailNickname" class="form-control" @bind-Value="user.MailNickname" Disabled />
+    <label for="lastName" class="form-label">Last Name</label>
+    <InputText id="lastName" class="form-control" @bind-Value="user.surname" Disabled />
 </div>
 <div class="mb-3">
     <label for="userPrincipalName" class="form-label">User Principal Name</label>
     <InputText id="userPrincipalName" class="form-control" @bind-Value="user.UserPrincipalName" Disabled />
+</div>
+<div class="mb-3">
+    <label for="department" class="form-label">Department</label>
+    <InputText id="department" class="form-control" @bind-Value="user.Department" Disabled />
 </div>
 
 <button class="btn btn-danger" @onclick="HandleConfirm">Confirm</button>
@@ -55,8 +59,14 @@
 
     public class User
     {
-        public string DisplayName { get; set; }
-        public string MailNickname { get; set; }
+        public string givenName { get; set; }
+        public string surname { get; set; }
         public string UserPrincipalName { get; set; }
+        public string Department { get; set; }
     }
 }
+
+
+
+
+
