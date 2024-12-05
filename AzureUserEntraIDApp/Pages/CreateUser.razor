@@ -18,16 +18,32 @@
     <ValidationSummary />
 
     <div class="mb-3">
-        <label for="displayName" class="form-label">Display Name</label>
-        <InputText id="displayName" class="form-control" @bind-Value="newUser.DisplayName" />
+        <label for="firstName" class="form-label">First Name</label>
+        <InputText id="firstName" class="form-control" @bind-Value="newUser.FirstName" />
     </div>
     <div class="mb-3">
-        <label for="mailNickname" class="form-label">Mail Nickname</label>
-        <InputText id="mailNickname" class="form-control" @bind-Value="newUser.MailNickname" />
+        <label for="lastName" class="form-label">Last Name</label>
+        <InputText id="lastName" class="form-control" @bind-Value="newUser.LastName" />
     </div>
     <div class="mb-3">
         <label for="userPrincipalName" class="form-label">User Principal Name</label>
         <InputText id="userPrincipalName" class="form-control" @bind-Value="newUser.UserPrincipalName" />
+    </div>
+    <div class="mb-3">
+        <label for="nickName" class="form-label">Nick Name</label>
+        <InputText id="nickName" class="form-control" @bind-Value="newUser.NickName" />
+    </div>
+    <div class="mb-3">
+        <label for="displayName" class="form-label">Display Name</label>
+        <InputText id="displayName" class="form-control" @bind-Value="newUser.DisplayName" />
+    </div>
+    <div class="mb-3">
+        <label for="department" class="form-label">Department</label>
+        <InputText id="department" class="form-control" @bind-Value="newUser.Department" />
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Other Email</label>
+        <InputText id="email" class="form-control" @bind-Value="newUser.OtherEmail" />
     </div>
     <div class="mb-3">
         <label for="password" class="form-label">Password</label>
@@ -57,12 +73,13 @@
 
     public class User
     {
-        public string DisplayName { get; set; }
-        public string MailNickname { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string UserPrincipalName { get; set; }
+        public string NickName { get; set; }
+        public string DisplayName { get; set; }
+        public string Department { get; set; }
+        public string OtherEmail { get; set; }
         public string Password { get; set; }
     }
-
-
-    
 }

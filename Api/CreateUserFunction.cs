@@ -43,8 +43,12 @@ namespace API
             {
                 accountEnabled = true,
                 displayName = data.DisplayName,
-                mailNickname = data.MailNickname,
+                mailNickname = data.NickName,
                 userPrincipalName = data.UserPrincipalName,
+                givenName = data.FirstName,
+                surname = data.LastName,
+                department = data.Department,
+                otherMails = new[] { data.OtherEmail },
                 passwordProfile = new
                 {
                     forceChangePasswordNextSignIn = true,
@@ -89,10 +93,18 @@ namespace API
 
         public class NewUser
         {
-            public string DisplayName { get; set; }
-            public string MailNickname { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
             public string UserPrincipalName { get; set; }
+            public string NickName { get; set; }
+            public string DisplayName { get; set; }
+            public string Department { get; set; }
+            public string OtherEmail { get; set; }
             public string Password { get; set; }
         }
     }
 }
+
+
+
+
