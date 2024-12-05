@@ -20,9 +20,10 @@ else
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>Display Name</th>
-                <th>Mail Nickname</th>
+                <th>First Name</th>
+                <th>Last Name</th>
                 <th>User Principal Name</th>
+                <th>Department</th>
                 @if (showNoButtons != true)
                 {
                     <th>Actions</th>
@@ -33,9 +34,10 @@ else
             @foreach (var user in users)
             {
                 <tr>
-                    <td>@user.DisplayName</td>
-                    <td>@user.MailNickname</td>
+                    <td>@user.givenName</td>
+                    <td>@user.surname</td>
                     <td>@user.UserPrincipalName</td>
+                    <td>@user.Department</td>
                     @if (showNoButtons != true)
                     {
                         <td>
@@ -108,9 +110,10 @@ else
 
     public class User
     {
-        public string DisplayName { get; set; }
-        public string MailNickname { get; set; }
+        public string givenName { get; set; }
+        public string surname { get; set; }
         public string UserPrincipalName { get; set; }
+        public string Department { get; set; }
     }
 }
 

@@ -34,7 +34,7 @@ namespace API
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var response = await httpClient.GetAsync("https://graph.microsoft.com/v1.0/users");
+                var response = await httpClient.GetAsync("https://graph.microsoft.com/v1.0/users?$select=givenName,surname,userPrincipalName,department");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -82,9 +82,12 @@ namespace API
 
         public class User
         {
-            public string DisplayName { get; set; }
-            public string MailNickname { get; set; }
+            [JsonProperty("givenName")]
+            public string FirstName { get; set; }
+            [JsonProperty("surname")]
+            public string LastName { get; set; }
             public string UserPrincipalName { get; set; }
+            public string Department { get; set; }
         }
 
         public class GraphResponse
@@ -94,5 +97,8 @@ namespace API
         }
     }
 }
+
+
+
 
 
