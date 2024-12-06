@@ -19,15 +19,19 @@
 
     <div class="mb-3">
         <label for="firstName" class="form-label">First Name</label>
-        <InputText id="firstName" class="form-control" @bind-Value="newUser.FirstName" />
+        <InputText id="firstName" class="form-control" @bind-Value="newUser.FirstName"  />
     </div>
     <div class="mb-3">
         <label for="lastName" class="form-label">Last Name</label>
-        <InputText id="lastName" class="form-control" @bind-Value="newUser.LastName" />
+        <InputText id="lastName" class="form-control" @bind-Value="newUser.LastName"  />
     </div>
     <div class="mb-3">
         <label for="userPrincipalName" class="form-label">User Principal Name</label>
-        <InputText id="userPrincipalName" class="form-control" @bind-Value="newUser.UserPrincipalName" />
+        <div class="input-group">
+            <InputText id="userPrincipalName" class="form-control short-textbox" @bind-Value="newUser.UserPrincipalName" />
+            <span class="input-group-text">&#64;</span>
+            <span class="input-group-text">shreyasrastogigmail.onmicrosoft.com</span>
+        </div>
     </div>
     <div class="mb-3">
         <label for="nickName" class="form-label">Nick Name</label>
@@ -58,8 +62,14 @@
     private User newUser = new User();
     private bool successMessageVisible = false;
 
+    private void UpdateUserPrincipalName()
+    {
+        newUser.UserPrincipalName = $"{newUser.FirstName}.{newUser.LastName}";
+    }
+
     private async Task HandleValidSubmit()
     {
+        newUser.UserPrincipalName = $"{newUser.UserPrincipalName}@shreyasrastogigmail.onmicrosoft.com";
         var response = await Http.PostAsJsonAsync("/api/CreateUser", newUser);
         if (response.IsSuccessStatusCode)
         {
@@ -73,13 +83,19 @@
 
     public class User
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string UserPrincipalName { get; set; }
-        public string NickName { get; set; }
-        public string DisplayName { get; set; }
-        public string Department { get; set; }
-        public string OtherEmail { get; set; }
-        public string Password { get; set; }
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+        public string UserPrincipalName { get; set; } = string.Empty;
+        public string NickName { get; set; } = string.Empty;
+        public string DisplayName { get; set; } = string.Empty;
+        public string Department { get; set; } = string.Empty;
+        public string OtherEmail { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
     }
 }
+
+<style>
+    .short-textbox {
+        width: 200px;
+    }
+</style>
