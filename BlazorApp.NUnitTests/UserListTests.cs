@@ -20,9 +20,10 @@ namespace BlazorApp.NUnitTests
         public void OneTimeSetup()
         {
             customHttpMessageHandler = new CustomHttpMessageHandler();
+            var baseAddress = Environment.GetEnvironmentVariable("BASE_ADDRESS") ?? "http://localhost:7203";
             httpClient = new HttpClient(customHttpMessageHandler)
             {
-                BaseAddress = new System.Uri("https://programmingparrotcorp.com")
+                BaseAddress = new System.Uri(baseAddress)
             };
             Services.AddSingleton(httpClient);
         }
