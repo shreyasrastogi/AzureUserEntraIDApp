@@ -1,0 +1,48 @@
+﻿@page "/aboutus"
+@using System.Net.Http
+@using System.Net.Http.Json
+@inject HttpClient Http
+
+<PageTitle>About Us</PageTitle>
+
+<h3>About Us</h3>
+
+<p>
+    This site is for "Accelerate App Development with GitHub Copilot" developed using GitHub Copilot.
+</p>
+
+<h4>Our Team</h4>
+<div class="team">
+    <div class="team-member">
+        <p>Shreyas Rastogi</p>
+        <img src="images/Shreyas.jpg" alt="Shreyas Rastogi" width="150" />
+    </div>
+    <div class="team-member">
+        <p>Urvashi Mehta</p>
+        <img src="images/Urvashi.jpg" alt="Urvashi Mehta" width="150" />
+    </div>
+</div>
+
+<style>
+    .team {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px; /* Add margin to move the team section down */
+    }
+
+    .team-member {
+        text-align: center;
+        margin: 0 20px;
+    }
+
+    h3, p {
+        text-align: center;
+        font-size: 1.5em;
+    }
+
+    h4 {
+        text-align: center;
+        margin-top: 40px; /* Add margin to move the "Our Team" heading down */
+    }
+</style>
