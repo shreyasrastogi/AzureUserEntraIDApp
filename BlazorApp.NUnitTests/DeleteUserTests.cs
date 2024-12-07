@@ -11,7 +11,7 @@ using NUnit.Framework;
 namespace BlazorApp.NUnitTests
 {
     [TestFixture]
-    public class DisableUserTests : Bunit.TestContext
+    public class DeleteUserTests : Bunit.TestContext
     {
         private CustomHttpMessageHandler customHttpMessageHandler = null!;
         private HttpClient httpClient = null!;
@@ -20,7 +20,6 @@ namespace BlazorApp.NUnitTests
         public void OneTimeSetup()
         {
             customHttpMessageHandler = new CustomHttpMessageHandler();
-            httpClient = new HttpClient(customHttpMessageHandler);
             httpClient = new HttpClient(customHttpMessageHandler)
             {
                 BaseAddress = new System.Uri("https://programmingparrotcorp.com")
@@ -42,7 +41,7 @@ namespace BlazorApp.NUnitTests
                     });
                 }
 
-                if (request.Method == HttpMethod.Put && request.RequestUri != null && request.RequestUri.ToString().Contains("/api/DisableUser"))
+                if (request.Method == HttpMethod.Delete && request.RequestUri != null && request.RequestUri.ToString().Contains("/api/DeleteUser"))
                 {
                     return Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.OK));
                 }
@@ -52,13 +51,13 @@ namespace BlazorApp.NUnitTests
         }
 
         [Test]
-        public void DisableUserComponent_ShouldRenderCorrectly()
+        public void DeleteUserComponent_ShouldRenderCorrectly()
         {
             // Act
-            var cut = RenderComponent<DisableUser>(parameters => parameters.Add(p => p.userPrincipalName, "john.doe@example.com"));
+            var cut = RenderComponent<DeleteUser>(parameters => parameters.Add(p => p.userPrincipalName, "john.doe@example.com"));
 
             // Assert
-            cut.Markup.Should().Contain("Disable User");
+            cut.Markup.Should().Contain("Delete User");
             cut.Markup.Should().Contain("First Name");
             cut.Markup.Should().Contain("Last Name");
             cut.Markup.Should().Contain("User Principal Name");
@@ -66,20 +65,20 @@ namespace BlazorApp.NUnitTests
         }
 
         [Test]
-        public void DisableUserComponent_ShouldDisableUser()
+        public void DeleteUserComponent_ShouldDeleteUser()
         {
             // Act
-            var cut = RenderComponent<DisableUser>(parameters => parameters.Add(p => p.userPrincipalName, "johndoe@shreyasrastogigmail.onmicrosoft.com"));
+            var cut = RenderComponent<DeleteUser>(parameters => parameters.Add(p => p.userPrincipalName, "john.doe@example.com"));
 
             cut.Find("button").Click();
 
             // Assert
             customHttpMessageHandler.SendAsyncFunc = (request, cancellationToken) =>
             {
-                if (request.Method == HttpMethod.Put && request.RequestUri != null && request.RequestUri.ToString().Contains("/api/DisableUser"))
+                if (request.Method == HttpMethod.Delete && request.RequestUri != null && request.RequestUri.ToString().Contains("/api/DeleteUser"))
                 {
                     var content = request.Content?.ReadAsStringAsync().Result;
-                    content.Should().Contain("johndoe@shreyasrastogigmail.onmicrosoft.com");
+                    content.Should().Contain("john.doe@example.com");
                     return Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.OK));
                 }
 
