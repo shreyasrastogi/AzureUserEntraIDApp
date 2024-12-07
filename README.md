@@ -22,4 +22,67 @@ AzureUserEntraIDApp is a Blazor WebAssembly application that provides functional
 ### Installation
 
 1. **Clone the repository**:
+   git clone https://github.com/yourusername/AzureUserEntraIDApp.git
+   cd AzureUserEntraIDApp
+
+2. **Restore dependencies**:
+    dotnet restore
+   
+3. **Build the application**:
+    dotnet build
+   
+4. **Run the application**:
+    dotnet run
+   
+### Running Tests
+
+To run the unit tests, use the following command:
+dotnet test
+
+## Project Structure
+
+- **AzureUserEntraIDApp**: The main Blazor WebAssembly project.
+  - **Pages**: Contains the Razor components for different pages.
+    - `Home.razor`: Home page component.
+    - `CreateUser.razor`: Component for creating a new user.
+    - `UserList.razor`: Component for displaying and managing the user list.
+    - `Feedback.razor`: Component for submitting feedback.
+    - `AboutUs.razor`: Component for displaying information about the team.
+  - **Shared**: Contains shared components and layouts.
+    - `MainLayout.razor`: Main layout component.
+    - `NavMenu.razor`: Navigation menu component.
+  - **wwwroot**: Contains static files such as CSS, JavaScript, and images.
+    - `index.html`: The main HTML file for the Blazor WebAssembly application.
+    - `manifest.json`: Web app manifest file.
+    - `logo.png`: The logo image used as the favicon.
+- **BlazorApp.NUnitTests**: Contains the unit tests for the application.
+  - `FeedbackTests.cs`: Unit tests for the `Feedback.razor` component.
+  - `DisableUserTests.cs`: Unit tests for the `DisableUser.razor` component.
+  - `HomeTests.cs`: Unit tests for the `Home.razor` component.
+
+## Configuration
+
+### Update Favicon
+
+To update the favicon, replace the `logo.png` file in the `wwwroot` directory and update the `index.html` file to reference the new favicon.
+
+### Update `manifest.json`
+
+Ensure the `manifest.json` file in the `wwwroot` directory includes the new logo image.
+{ "name": "AzureUserEntraIDApp", "short_name": "AzureUserEntraIDApp", "start_url": "/", "display": "standalone", "background_color": "#ffffff", "theme_color": "#000000", "icons": [ { "src": "logo.png", "sizes": "192x192", "type": "image/png" }, { "src": "logo.png", "sizes": "512x512", "type": "image/png" } ] }
+
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any changes.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For any questions or feedback, please reach out to [support@example.com](mailto:support@example.com).
+
+
     
