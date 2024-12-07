@@ -5,10 +5,10 @@ AzureUserEntraIDApp is a Blazor WebAssembly application that provides functional
 ## Features
 
 - **Display All Users**: View a list of all users.
-- **Create User**: Add a new user to the system.
-- **Modify User**: Edit existing user details.
-- **Disable User**: Disable a user account.
-- **Delete User**: Remove a user from the system.
+- **Create User**: Add a new user to Azure Entra ID using Graph API  
+- **Modify User**: Edit existing user in Azure Entra ID using Graph API
+- **Disable User**: Disable a user account  in Azure Entra ID using Graph API
+- **Delete User**: Remove a user account  in Azure Entra ID using Graph API
 - **Feedback**: Submit feedback about the application.
 - **Sentiment Analysis**: Sentiment Analysis of user sentiment using **Azure AI Language**.
 - **SaveFeedback to SQL Server DB**: Save Feedback , user email and user phone number to MS SQL Server DB using **Data API** .
