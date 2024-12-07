@@ -81,7 +81,7 @@ Contributtors to this current project are Shreyas Rastogi & Urvashi Mehta
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+NA
 
 ## Contact
 
