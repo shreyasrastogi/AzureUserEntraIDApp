@@ -24,6 +24,7 @@ AzureUserEntraIDApp is a Blazor WebAssembly application that provides functional
 1. **Clone the repository**:
    
    git clone https://github.com/yourusername/AzureUserEntraIDApp.git
+   
    cd AzureUserEntraIDApp
 
 3. **Restore dependencies**:
