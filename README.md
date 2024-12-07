@@ -62,12 +62,12 @@ dotnet test
     - `index.html`: The main HTML file for the Blazor WebAssembly application.
     - `logo.png`: The logo image used as the favicon.
 - **BlazorApp.NUnitTests**: Contains the unit tests for the application.
-  - `FeedbackTests.cs`: Unit tests for the `Feedback.razor` component.
-  - `DisableUserTests.cs`: Unit tests for the `DisableUser.razor` component.
-  - `DeleteUserTests.cs`: Unit tests for the `DeleteUser.razor` component.
-  - `CreateUserTests.cs`: Unit tests for the `CreateUser.razor` component.
-  - `EditUserTests.cs`: Unit tests for the `EditUser.razor` component.
-  - `HomeTests.cs`: Unit tests for the `Home.razor` component.
+    - `FeedbackTests.cs`: Unit tests for the `Feedback.razor` component.
+    - `DisableUserTests.cs`: Unit tests for the `DisableUser.razor` component.
+    - `DeleteUserTests.cs`: Unit tests for the `DeleteUser.razor` component.
+    - `CreateUserTests.cs`: Unit tests for the `CreateUser.razor` component.
+    - `EditUserTests.cs`: Unit tests for the `EditUser.razor` component.
+    - `HomeTests.cs`: Unit tests for the `Home.razor` component.
  
     # API Project Documentation
 
