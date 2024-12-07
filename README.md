@@ -77,7 +77,7 @@ To update the favicon, replace the `logo.png` file in the `wwwroot` directory an
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request for any changes.
+Contributtors to this current project are Shreyas Rastogi & Urvashi Mehta
 
 ## License
 
