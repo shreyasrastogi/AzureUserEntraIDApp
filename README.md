@@ -68,6 +68,38 @@ dotnet test
   - `CreateUserTests.cs`: Unit tests for the `CreateUser.razor` component.
   - `EditUserTests.cs`: Unit tests for the `EditUser.razor` component.
   - `HomeTests.cs`: Unit tests for the `Home.razor` component.
+ 
+    # API Project Documentation
+
+## Overview
+The API project is an Azure Functions project targeting .NET 8. It includes various functions for handling user-related operations and feedback processing. The project leverages Microsoft Graph API for user management and integrates with Azure for authentication and authorization.
+
+## Project Structure
+
+### Functions
+- **CreateUserFunction.cs**: Handles the creation of new users.
+- **UpdateUserFunction.cs**: Handles the updating of existing user information.
+- **DisableUserFunction.cs**: Handles disabling user accounts.
+- **GetUserFunction.cs**: Retrieves user information.
+- **GetUsersFunction.cs**: Retrieves a list of users.
+- **DeleteUserFunction.cs**: Handles the deletion of user accounts.
+- **UserFeedbackFunction.cs**: Processes user feedback and performs sentiment analysis.
+
+### Models
+- **NewUser.cs**: Represents the data model for a new user.
+- **UserFeedback.cs**: Represents the data model for user feedback.
+
+### Properties
+- **launchSettings.json**: Contains settings for launching the project locally.
+
+### Configuration Files
+- **local.settings.json**: Contains local settings for the Azure Functions project.
+- **host.json**: Contains global configuration options for all functions in the project.
+
+### Project File
+- **Api.csproj**: The project file that defines the dependencies and build settings for the API project.
+
+
 
 ## Configuration
 
