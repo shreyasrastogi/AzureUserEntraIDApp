@@ -50,7 +50,7 @@ dotnet test
     - `Home.razor`: Home page component.
     - `CreateUser.razor`: Component for creating a new user.
     - `UserList.razor`: Component for displaying and managing the user list.
-    - `Feedback.razor`: Component for submitting feedback , doing sentiment Analysis using Azure AI Language and saving to Database using Data API.
+    - `Feedback.razor`: Component for submitting feedback , doing **sentiment Analysis** using **Azure AI Language** and saving to **SQL Database** using **Data API**.
     - `AboutUs.razor`: Component for displaying information about the team.
     - `EditUser.razor`: Component for modifying exisitng user.
     - `DisableUser.razor`: Component for Disabling existing account.
