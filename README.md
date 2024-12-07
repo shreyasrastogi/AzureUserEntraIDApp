@@ -60,7 +60,6 @@ dotnet test
     - `NavMenu.razor`: Navigation menu component.
   - **wwwroot**: Contains static files such as CSS, JavaScript, and images.
     - `index.html`: The main HTML file for the Blazor WebAssembly application.
-    - `manifest.json`: Web app manifest file.
     - `logo.png`: The logo image used as the favicon.
 - **BlazorApp.NUnitTests**: Contains the unit tests for the application.
   - `FeedbackTests.cs`: Unit tests for the `Feedback.razor` component.
