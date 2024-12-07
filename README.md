@@ -21,28 +21,6 @@ AzureUserEntraIDApp is a Blazor WebAssembly application that provides functional
 - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) or later
 - [Node.js](https://nodejs.org/) (for building and running the application)
 
-### Installation
-
-1. **Clone the repository**:
-   
-   git clone https://github.com/shreyasrastogi/AzureUserEntraIDApp.git
-   
-   cd AzureUserEntraIDApp
-
-3. **Restore dependencies**:
-    dotnet restore
-   
-4. **Build the application**:
-    dotnet build
-   
-5. **Run the application**:
-    dotnet run
-   
-### Running Tests
-
-To run the unit tests, use the following command:
-dotnet test
-
 ## Project Structure
 
 - **AzureUserEntraIDApp**: The main Blazor WebAssembly project.
@@ -60,7 +38,8 @@ dotnet test
     - `NavMenu.razor`: Navigation menu component.
   - **wwwroot**: Contains static files such as CSS, JavaScript, and images.
     - `index.html`: The main HTML file for the Blazor WebAssembly application.
-    - `logo.png`: The logo image used as the favicon.
+    - `logo.png`: The logo image used as the favicon
+      
 - **BlazorApp.NUnitTests**: Contains the unit tests for the application.
     - `FeedbackTests.cs`: Unit tests for the `Feedback.razor` component.
     - `DisableUserTests.cs`: Unit tests for the `DisableUser.razor` component.
@@ -68,14 +47,9 @@ dotnet test
     - `CreateUserTests.cs`: Unit tests for the `CreateUser.razor` component.
     - `EditUserTests.cs`: Unit tests for the `EditUser.razor` component.
     - `HomeTests.cs`: Unit tests for the `Home.razor` component.
+
  
-    # API Project Documentation
-
-## Overview
-The API project is an Azure Functions project targeting .NET 8. It includes various functions for handling user-related operations and feedback processing. The project leverages Microsoft Graph API for user management and integrates with Azure for authentication and authorization.
-
-## Project Structure
-
+- **API Project**: The API project is an Azure Functions project targeting .NET 8. It includes various functions for handling user-related operations and feedback processing. The project leverages Microsoft Graph API for user management and integrates with Azure for authentication and authorization.
 ### Functions
 - **CreateUserFunction.cs**: Handles the creation of new users.
 - **UpdateUserFunction.cs**: Handles the updating of existing user information.
@@ -99,7 +73,95 @@ The API project is an Azure Functions project targeting .NET 8. It includes vari
 ### Project File
 - **Api.csproj**: The project file that defines the dependencies and build settings for the API project.
 
+### Installation
 
+1. **Clone the repository**:
+   
+   git clone https://github.com/shreyasrastogi/AzureUserEntraIDApp.git
+   
+   cd AzureUserEntraIDApp
+
+# Local Development Setup
+
+## Overview
+To run the Azure Functions project locally, you need to create a `local.settings.json` file in the root directory of the project. This file contains configuration settings and secrets required for local development.
+
+## Steps to Create `local.settings.json`
+
+### 1. Create the File
+In the root directory of your Azure Functions project, create a file named `local.settings.json`.
+
+### 2. Add Configuration Settings
+Open the `local.settings.json` file and add the necessary configuration settings. Below is an example configuration for an Azure Functions project that includes settings for Azure Storage, Azure AD authentication, and a sentiment analysis API.
+
+### Example `local.settings.json`
+
+{
+    "IsEncrypted": false,
+    "Values": {
+        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+        "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+        "ClientId": "your-client-id",
+        "TenantId": "your-tenant-id",
+        "ClientSecret": "your-client-secret",
+        "SentimentAnalysisApiKey": "your-sentiment-analysis-api-key",
+        "SentimentAnalysisEndpoint": "https://your-sentiment-analysis-endpoint.cognitiveservices.azure.com/"
+    },
+    "Host": {
+        "CORS": "*",
+        "CORSCredentials": false
+    }
+}
+
+
+
+### Configuration Settings Explained
+- **IsEncrypted**: Indicates whether the settings are encrypted. Set to `false` for local development.
+- **Values**: Contains key-value pairs for various configuration settings.
+  - **AzureWebJobsStorage**: Connection string for Azure Storage. Use `UseDevelopmentStorage=true` for local development.
+  - **FUNCTIONS_WORKER_RUNTIME**: Specifies the runtime for Azure Functions. Set to `dotnet-isolated` for .NET isolated process.
+  - **ClientId**: The client ID of your Azure AD application.
+  - **TenantId**: The tenant ID of your Azure AD.
+  - **ClientSecret**: The client secret of your Azure AD application.
+  - **SentimentAnalysisApiKey**: The API key for the sentiment analysis service.
+  - **SentimentAnalysisEndpoint**: The endpoint URL for the sentiment analysis service.
+- **Host**: Contains settings for the local host.
+  - **CORS**: Specifies allowed origins for CORS. Use `*` to allow all origins.
+  - **CORSCredentials**: Indicates whether credentials are supported for CORS. Set to `false` for local development.
+
+## Adding `local.settings.json` to `.gitignore`
+To ensure that sensitive information in `local.settings.json` is not committed to source control, add the following line to your `.gitignore` file:
+
+
+## Running the Project Locally
+
+### Prerequisites
+- .NET 8 SDK
+- Azure Functions Core Tools
+- Visual Studio 2022 or later
+
+### Steps
+1. **Open the Solution**:
+   Open the solution in Visual Studio.
+
+2. **Restore NuGet Packages/dependencies**:
+   Restore the NuGet packages by running the following command in the terminal:
+   dotnet restore
+
+3. **Build the Solution**:
+   Build the solution by running the following command in the terminal:
+   dotnet build
+   
+4. **Run the Functions Locally**:
+   Set the API project as the startup project and run it using Visual Studio or the .NET CLI:
+   
+5. **Run the application**:
+    dotnet run
+   
+### Running Tests
+
+To run the unit tests, use the following command:
+dotnet test
 
 ## Configuration
 
