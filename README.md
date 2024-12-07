@@ -65,6 +65,9 @@ dotnet test
 - **BlazorApp.NUnitTests**: Contains the unit tests for the application.
   - `FeedbackTests.cs`: Unit tests for the `Feedback.razor` component.
   - `DisableUserTests.cs`: Unit tests for the `DisableUser.razor` component.
+  - `DeleteUserTests.cs`: Unit tests for the `DeleteUser.razor` component.
+  - `CreateUserTests.cs`: Unit tests for the `CreateUser.razor` component.
+  - `EditUserTests.cs`: Unit tests for the `EditUser.razor` component.
   - `HomeTests.cs`: Unit tests for the `Home.razor` component.
 
 ## Configuration
@@ -72,12 +75,6 @@ dotnet test
 ### Update Favicon
 
 To update the favicon, replace the `logo.png` file in the `wwwroot` directory and update the `index.html` file to reference the new favicon.
-
-### Update `manifest.json`
-
-Ensure the `manifest.json` file in the `wwwroot` directory includes the new logo image.
-{ "name": "AzureUserEntraIDApp", "short_name": "AzureUserEntraIDApp", "start_url": "/", "display": "standalone", "background_color": "#ffffff", "theme_color": "#000000", "icons": [ { "src": "logo.png", "sizes": "192x192", "type": "image/png" }, { "src": "logo.png", "sizes": "512x512", "type": "image/png" } ] }
-
 
 ## Contributing
 
