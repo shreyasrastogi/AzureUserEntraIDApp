@@ -33,6 +33,25 @@ jobs:
           output_location: "wwwroot" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
 
+  run_tests_job:
+    needs: build_and_deploy_job
+    runs-on: ubuntu-latest
+    name: Run Tests Job
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.x.x' # Use the appropriate .NET SDK version
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+      - name: Test
+        env:
+          BASE_ADDRESS: ${{ secrets.AZURE_WEBAPP_URL }}
+        run: dotnet test --no-build --verbosity normal --logger "console;verbosity=detailed"
+
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
