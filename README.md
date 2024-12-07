@@ -10,6 +10,8 @@ AzureUserEntraIDApp is a Blazor WebAssembly application that provides functional
 - **Disable User**: Disable a user account.
 - **Delete User**: Remove a user from the system.
 - **Feedback**: Submit feedback about the application.
+- **Sentiment Analysis**: Sentiment Analysis of user sentiment using Azure AI Language.
+- **SaveFeedback to SQL Server DB**: Save Feedback , user email and user phone number to MS SQL Server DB .
 
 ## Getting Started
 
