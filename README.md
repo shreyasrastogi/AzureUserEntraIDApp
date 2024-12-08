@@ -2,6 +2,8 @@
 
 AzureUserEntraIDApp is a Blazor WebAssembly application that provides functionalities for managing users in an **Azure environment**. The application allows users to **display, create, modify, disable, and delete user accounts** in **Entra ID** using **Graph API** . It also includes a feedback form for users to submit their feedback ,then do **Sentiment Analysis** using **Azure AI Language** and then save the feedback,sentiment,user email and phone number to **SQL Server Database** using **Data API**
 
+**Azure Components used in this solution** - Azure Static Web Apps , Azure Functions , SQL Server Database ,  Entra ID , Micrsoft Graph API , Micrsoft Data Builder API , Azure AI Language
+
 ## Features
 
 - **Display All Users**: View a list of all users.
