@@ -94,7 +94,7 @@ In the root directory of your Azure Functions project, create a file named `loca
 ### 2. Add Configuration Settings
 Open the `local.settings.json` file and add the necessary configuration settings. Below is an example configuration for an Azure Functions project that includes settings for Azure Storage, Azure AD authentication, and a sentiment analysis API.
 
-### Example `local.settings.json`
+###  `local.settings.json`
 
 {
     "IsEncrypted": false,
@@ -132,13 +132,47 @@ Open the `local.settings.json` file and add the necessary configuration settings
 ## Adding `local.settings.json` to `.gitignore`
 To ensure that sensitive information in `local.settings.json` is not committed to source control, add the following line to your `.gitignore` file:
 
-
 ## Running the Project Locally
 
 ### Prerequisites
 - .NET 8 SDK
 - Azure Functions Core Tools
 - Visual Studio 2022 or later
+
+**Registering an Application in Microsoft Entra ID**
+
+To register an application in Microsoft Entra ID, follow these steps:
+- Navigate to the Azure Portal.
+- Navigate to Microsoft Entra ID
+- Navigate to App Registrations
+- Click on the **"New registration"** button at the top of the App registrations pane.
+- Enter a name for your application (e.g., "AzureUserEntraIDApp").
+-	Supported account types: Choose who can use the application:
+- Click the **"Register"** button to create the application.
+Step 4: Configure the Application
+- After registration, you will be taken to the application's overview page. Here, you can find the **Application (client) ID and Directory (tenant) ID**, which you will need for your application configuration.
+- **Certificates & Secrets:**
+•	Click on "New client secret" to generate a new client secret. Provide a description and set an expiration period.
+•	Value: Copy the client secret value and store it securely. You will need this value for your application configuration.
+- **API Permissions:**
+•	Click on "Add a permission" and Graph API Permissions ( User.Read and  User.ReadWrite.All) & Grant admin consent
+- Configure Your API Project by updating local.settings.json
+
+**Creating an Azure Sentiment Analysis Endpoint**
+To create an Azure Sentiment Analysis endpoint using Azure AI Services (Language services), follow these steps:
+- Navigate to the Azure Portal.
+- Create a Cognitive Services Resource
+- In the search bar, type "Language" and select "Language" from the list.
+- Click on the "Create" button. 
+- Fill in the Resource Details:.
+- Review your settings and click "Create".
+- Configure the Sentiment Analysis Endpoint
+- In the left-hand menu, click on "Keys and Endpoint".
+  - **Endpoint**: Copy the endpoint URL. This will be used in your application.
+  - **Keys**: Copy one of the keys. This will be used as the API key in your application.
+- Update Your Application Configuration in API Project  in local.settings.json:
+
+
 
 ### Steps
 1. **Open the Solution**:
@@ -150,20 +184,19 @@ To ensure that sensitive information in `local.settings.json` is not committed t
 
 3. **Build the Solution**:
    Build the solution by running the following command in the terminal:
-   dotnet build
+   **dotnet build**
    
 4. **Run the Functions Locally**:
    Set the API project as the startup project and run it using Visual Studio or the .NET CLI:
    
 5. **Run the application**:
-    dotnet run
+    **dotnet run**
    
 ### Running Tests
 
 To run the unit tests, use the following command:
-dotnet test
+**dotnet test**
 
-## Configuration
 
 ### Update Favicon
 
