@@ -4,6 +4,7 @@
 @using Microsoft.AspNetCore.Components
 @using Microsoft.AspNetCore.Components.Web
 @inject HttpClient Http
+@inject IConfiguration Configuration
 
 <PageTitle>Feedback</PageTitle>
 
@@ -26,11 +27,11 @@
     </div>
     <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input id="email" class="form-control" @bind="feedback.Email"/>
+        <input id="email" class="form-control" @bind="feedback.Email" />
     </div>
     <div class="mb-3">
         <label for="phoneNumber" class="form-label">Phone Number</label>
-        <input id="phoneNumber" class="form-control" @bind="feedback.PhoneNumber"/>
+        <input id="phoneNumber" class="form-control" @bind="feedback.PhoneNumber" />
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </EditForm>
@@ -83,6 +84,9 @@
 
                     var endpoint = "data-api/rest/UserFeedback";
                     var dbResponse = await Http.PostAsJsonAsync(endpoint, data);
+
+                    // Send email using Azure Communication Services
+                    await SendEmailAsync(result.Email, result.Text, feedbackResponse);
                 }
                 else
                 {
@@ -97,6 +101,22 @@
         else
         {
             feedbackResponse = "Error submitting feedback.";
+        }
+    }
+
+    private async Task SendEmailAsync(string recipientEmail, string feedbackText, string feedbackResponse)
+    {
+        var emailRequest = new
+        {
+            RecipientEmail = recipientEmail,
+            UserText = feedbackText,
+            FeedbackResponse = feedbackResponse
+        };
+
+        var response = await Http.PostAsJsonAsync("api/SendFeedbackEmail", emailRequest);
+        if (!response.IsSuccessStatusCode)
+        {
+            Console.WriteLine("Error sending email.");
         }
     }
 
