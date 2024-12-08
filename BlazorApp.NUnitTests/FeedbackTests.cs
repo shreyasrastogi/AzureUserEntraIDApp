@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AzureUserEntraIDApp.Pages;
 using Bunit;
 using FluentAssertions;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 
@@ -25,6 +26,15 @@ namespace BlazorApp.NUnitTests
                 BaseAddress = new System.Uri(baseAddress)
             };
             Services.AddSingleton(httpClient);
+
+            // Register IConfiguration
+            var configuration = new ConfigurationBuilder()
+                .AddInMemoryCollection(new Dictionary<string, string>
+                {
+                    { "AzureCommunicationServicesConnectionString", "YourConnectionStringHere" }
+                })
+                .Build();
+            Services.AddSingleton<IConfiguration>(configuration);
         }
 
         [SetUp]
@@ -63,13 +73,13 @@ namespace BlazorApp.NUnitTests
         [Test]
         public void FeedbackComponent_ShouldSubmitFeedback()
         {
-            // Act
+            // Arrange
             var cut = RenderComponent<Feedback>();
 
+            // Act
             cut.Find("#feedbackText").Change("Great service!");
             cut.Find("#email").Change("john.doe@example.com");
             cut.Find("#phoneNumber").Change("1234567890");
-
             cut.Find("form").Submit();
 
             // Assert
@@ -133,7 +143,6 @@ namespace BlazorApp.NUnitTests
             cut.Find("#feedbackText").Change("Great service!");
             cut.Find("#email").Change("john.doe@example.com");
             cut.Find("#phoneNumber").Change("1234567890");
-
             cut.Find("form").Submit();
 
             // Assert
@@ -166,7 +175,6 @@ namespace BlazorApp.NUnitTests
             cut.Find("#feedbackText").Change("It was okay.");
             cut.Find("#email").Change("john.doe@example.com");
             cut.Find("#phoneNumber").Change("1234567890");
-
             cut.Find("form").Submit();
 
             // Assert
@@ -199,7 +207,6 @@ namespace BlazorApp.NUnitTests
             cut.Find("#feedbackText").Change("Bad service.");
             cut.Find("#email").Change("john.doe@example.com");
             cut.Find("#phoneNumber").Change("1234567890");
-
             cut.Find("form").Submit();
 
             // Assert
