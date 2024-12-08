@@ -326,7 +326,7 @@ For any questions or feedback, please reach out to [shreyasrastogi@gmail.com](ma
 - https://learn.microsoft.com/en-us/azure/static-web-apps/enterprise-edge?tabs=azure-portal
 - https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/quickstart?tabs=windows&pivots=programming-language-csharp
 - https://learn.microsoft.com/en-us/azure/static-web-apps/apis-functions
-
+- https://learn.microsoft.com/en-us/azure/data-api-builder/
 
 
 
