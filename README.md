@@ -94,8 +94,9 @@ In the root directory of your Azure Functions project, create a file named `loca
 ### 2. Add Configuration Settings
 Open the `local.settings.json` file and add the necessary configuration settings. Below is an example configuration for an Azure Functions project that includes settings for Azure Storage, Azure AD authentication, and a sentiment analysis API.
 
-###  `local.settings.json`
-
+ ### local.settings.json
+ 
+ ```
 {
     "IsEncrypted": false,
     "Values": {
@@ -113,7 +114,7 @@ Open the `local.settings.json` file and add the necessary configuration settings
     }
 }
 
-
+```
 
 ### Configuration Settings Explained
 - **IsEncrypted**: Indicates whether the settings are encrypted. Set to `false` for local development.
@@ -181,7 +182,7 @@ To create an Azure Sentiment Analysis endpoint using Azure AI Services (Language
 - Connect to SQL Database: Get the connection string .
 
 **Create the SQL Server Table**
-
+ ```
 CREATE TABLE dbo.UserFeedback (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     Text NVARCHAR(MAX) NOT NULL,
@@ -190,15 +191,20 @@ CREATE TABLE dbo.UserFeedback (
     Sentiment NVARCHAR(50) NOT NULL
 );
 
+ ```
 **Setup Data Builder API**  
 **( not required as already setup , below are the steps that were followed for informational purpose)**
 - Use the swa db init command to generate a database configuration file.
 
+  ```
   swa db init --database-type mssql
+  ```
   
 - Use the dab add command to add at least one database entity to the configuration.
 
+  ```
   dab add "UserFeedback" --source "dbo.UserFeedback" --permissions "anonymous:*" --config "swa-db-connections/staticwebapp.database.config.json"
+   ```
 
 - Create the env variable for connection string and initialize connection string in previous step.
 
