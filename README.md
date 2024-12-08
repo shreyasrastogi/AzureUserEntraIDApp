@@ -139,6 +139,7 @@ To ensure that sensitive information in `local.settings.json` is not committed t
 - Azure Functions Core Tools
 - Visual Studio 2022 or later
 
+
 **Registering an Application in Microsoft Entra ID**
 
 To register an application in Microsoft Entra ID, follow these steps:
@@ -235,6 +236,8 @@ To run the unit tests, use the following command:**dotnet test**
 
 **Deploying your Project to Azure**
 
+- **Application Registration , Sentiment Analysis Endpoint & Key , Azure SQL Server Database has been done in earlier , Please refer to the steps in local setup**
+
 - Navigate to the Azure Portal.
 **New Static Web App**
 - Search for "Static Web App" and select **"Static Web App"**.
@@ -256,7 +259,6 @@ To run the unit tests, use the following command:**dotnet test**
 **1.Add Database connection(preview)**
 Use the following steps to create a connection between the Static Web Apps instance of your site and your database.
 
-
 - In the Settings section, select Database connection.
 - Under the Production section, select the Link existing database link.
 - In the Link existing database window, enter the following values:
@@ -267,6 +269,27 @@ Use the following steps to create a connection between the Static Web Apps insta
 - **Database Name**	Select the name of the database you want to link to your static web app.
 - **Authentication** Type	Select **Connection string**, and enter the Azure SQL user name and password.
  - Select OK.
+
+   **2.Add Environment Variables**
+   -
+   - **ClientId**         -  Refer to Application Registration step above for details on how to get this value
+   - **ClientSecret**     -  Refer to Application Registration step above for details on how to get this value  
+   - **TenantId**         -  Refer to Application Registration step above for details on how to get this value
+   - **SentimentAnalysisEndpoint**  - Refer to  Sentiment Ananlysis API Endpoint Setup step for this url
+   - **SentimentAnalysisApiKey**    - Refer to  Sentiment Ananlysis API Endpoint Setup step for this key
+   - **DATABASECONNECTIONSTRING**   - Refer to SQL Database to obtain the connection string
+  
+   **3. Add a custom Domain (Optional)**
+   - Click on "Custom Domains"
+   - Click on "Add" , then click "New custom Domain"
+   - Check if your domain is available or select appropriate domain
+   - for this project we have taken **"programmingparrotcorp.com"**
+   - Once the domain is setup , you can browser the site at **"programmingparrotcorp.com"**
+  
+   - **4.Enable Enterpise Grade Edge**
+   - Click on "Enterprise Grade Edge" enable Enterprise Grade Edge" by clicking on checkbox.
+
+  
 
 
      
