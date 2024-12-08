@@ -297,8 +297,8 @@ Use the following steps to create a connection between the Static Web Apps insta
   - Add **run_tests_job:** section to run test cases post deployment
   - Refer to AzureUserEntraIDApp\.github\workflows\azure-static-web-apps-zealous-sea-0de5bb010.yml for full details
   - Add Secrets
-  - ** Navigate to Github->settings ->Secrets and Variables->Actions
-  - ** Click on New Repository secret
+  - Navigate to Github->settings ->Secrets and Variables->Actions
+  - Click on **New Repository secret**
   - **AZURE_STATIC_WEB_APPS_API_TOKEN_ZEALOUS_SEA_0DE5BB010** - it equal to deployment key in static web apps ( This sceret should  already be created during azure static web app setup setup )
   - **AZURE_WEBAPP_URL** - https://programmingparrotcorp.com/
 
