@@ -286,18 +286,21 @@ Use the following steps to create a connection between the Static Web Apps insta
    - for this project we have taken **"programmingparrotcorp.com"**
    - Once the domain is setup , you can browser the site at **"programmingparrotcorp.com"**
   
-   - **4.Enable Enterpise Grade Edge**
+   **4.Enable Enterpise Grade Edge**
    - Click on "Enterprise Grade Edge" enable Enterprise Grade Edge" by clicking on checkbox.
-
   
 
 
-     
-
-     
-
-
-
+  **Enable Unit Test cases to run after deployment to Azure Static Web App to identify an post deployment issues**
+  - Navigate to AzureUserEntraIDApp\.github\workflows
+  - Open file **azure-static-web-apps-zealous-sea-0de5bb010.yml** 
+  - Add **run_tests_job:** section to run test cases post deployment
+  - Refer to AzureUserEntraIDApp\.github\workflows\azure-static-web-apps-zealous-sea-0de5bb010.yml for full details
+  - Add Secrets
+  - ** Navigate to Github->settings ->Secrets and Variables->Actions
+  - ** Click on New Repository secret
+  - **AZURE_STATIC_WEB_APPS_API_TOKEN_ZEALOUS_SEA_0DE5BB010** - it equal to deployment key in static web apps ( This sceret should  already be created during azure static web app setup setup )
+  - **AZURE_WEBAPP_URL** - https://programmingparrotcorp.com/
 
 
 ### Update Favicon
@@ -317,8 +320,14 @@ NA
 For any questions or feedback, please reach out to [shreyasrastogi@gmail.com](mailto:shreyasrastogi@gmail.com).
 
 ### Reference 
+https://learn.microsoft.com/en-us/azure/static-web-apps/overview
 https://learn.microsoft.com/en-us/azure/data-api-builder/deployment/how-to-host-static-web-apps
 https://learn.microsoft.com/en-us/azure/static-web-apps/database-azure-sql?tabs=bash&pivots=static-web-apps-rest
+https://learn.microsoft.com/en-us/azure/static-web-apps/enterprise-edge?tabs=azure-portal
+https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/quickstart?tabs=windows&pivots=programming-language-csharp
+https://learn.microsoft.com/en-us/azure/static-web-apps/apis-functions
+
+
 
 
     
