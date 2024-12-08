@@ -172,6 +172,33 @@ To create an Azure Sentiment Analysis endpoint using Azure AI Services (Language
   - **Keys**: Copy one of the keys. This will be used as the API key in your application.
 - Update Your Application Configuration in API Project  in local.settings.json:
 
+**Creating a SQL Server Database in Azure**
+- Sign in to Azure Portal: Navigate to the Azure Portal and sign in.
+- Create SQL Server: Create a new SQL Server in Azure.
+- Create SQL Database: Create a new SQL Database in the SQL Server.
+- Configure Firewall Rules: Set up firewall rules to allow access to the SQL Server.
+- Connect to SQL Database: Get the connection string .
+
+**Create the SQL Server Table**
+
+CREATE TABLE dbo.UserFeedback (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Text NVARCHAR(MAX) NOT NULL,
+    Email NVARCHAR(255) NOT NULL,
+    PhoneNumber NVARCHAR(50) NOT NULL,
+    Sentiment NVARCHAR(50) NOT NULL
+);
+
+**Setup Data Builder API**
+- Use the swa db init command to generate a database configuration file.
+
+  swa db init --database-type mssql
+  
+- Use the dab add command to add at least one database entity to the configuration.
+
+  dab add "UserFeedback" --source "dbo.UserFeedback" --permissions "anonymous:*" --config "swa-db-connections/staticwebapp.database.config.json"
+
+- Create the env variable for connection string and initialize connection string in previous step.
 
 
 
@@ -181,23 +208,18 @@ To create an Azure Sentiment Analysis endpoint using Azure AI Services (Language
    Open the solution in Visual Studio.
 
 2. **Restore NuGet Packages/dependencies**:
-   Restore the NuGet packages by running the following command in the terminal:
-   dotnet restore
+   Restore the NuGet packages by running the following command in the terminal: **dotnet restore**
 
 3. **Build the Solution**:
-   Build the solution by running the following command in the terminal:
-   **dotnet build**
+   Build the solution by running the following command in the terminal: **dotnet build**
    
 4. **Run the Functions Locally**:
    Set the API project as the startup project and run it using Visual Studio or the .NET CLI:
    
-5. **Run the application**:
-    **dotnet run**
+5. **Run the application**:  Run the Application **dotnet run**
    
 ### Running Tests
-
-To run the unit tests, use the following command:
-**dotnet test**
+To run the unit tests, use the following command:**dotnet test**
 
 
 ### Update Favicon
@@ -215,6 +237,10 @@ NA
 ## Contact
 
 For any questions or feedback, please reach out to [shreyasrastogi@gmail.com](mailto:shreyasrastogi@gmail.com).
+
+### Reference 
+https://learn.microsoft.com/en-us/azure/data-api-builder/deployment/how-to-host-static-web-apps
+https://learn.microsoft.com/en-us/azure/static-web-apps/database-azure-sql?tabs=bash&pivots=static-web-apps-rest
 
 
     
