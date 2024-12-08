@@ -320,12 +320,12 @@ NA
 For any questions or feedback, please reach out to [shreyasrastogi@gmail.com](mailto:shreyasrastogi@gmail.com).
 
 ### Reference 
-https://learn.microsoft.com/en-us/azure/static-web-apps/overview
-https://learn.microsoft.com/en-us/azure/data-api-builder/deployment/how-to-host-static-web-apps
-https://learn.microsoft.com/en-us/azure/static-web-apps/database-azure-sql?tabs=bash&pivots=static-web-apps-rest
-https://learn.microsoft.com/en-us/azure/static-web-apps/enterprise-edge?tabs=azure-portal
-https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/quickstart?tabs=windows&pivots=programming-language-csharp
-https://learn.microsoft.com/en-us/azure/static-web-apps/apis-functions
+- https://learn.microsoft.com/en-us/azure/static-web-apps/overview
+- https://learn.microsoft.com/en-us/azure/data-api-builder/deployment/how-to-host-static-web-apps
+- https://learn.microsoft.com/en-us/azure/static-web-apps/database-azure-sql?tabs=bash&pivots=static-web-apps-rest
+- https://learn.microsoft.com/en-us/azure/static-web-apps/enterprise-edge?tabs=azure-portal
+- https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/quickstart?tabs=windows&pivots=programming-language-csharp
+- https://learn.microsoft.com/en-us/azure/static-web-apps/apis-functions
 
 
 
