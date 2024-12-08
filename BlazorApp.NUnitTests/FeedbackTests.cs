@@ -39,6 +39,11 @@ namespace BlazorApp.NUnitTests
                     return Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.OK) { Content = responseContent });
                 }
 
+                if (request.Method == HttpMethod.Post && request.RequestUri != null && request.RequestUri.ToString().Contains("api/SendFeedbackEmail"))
+                {
+                    return Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.OK));
+                }
+
                 return Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.NotFound));
             };
         }
@@ -50,7 +55,6 @@ namespace BlazorApp.NUnitTests
             var cut = RenderComponent<Feedback>();
 
             // Assert
-            cut.Markup.Should().Contain("Feedback");
             cut.Markup.Should().Contain("Feedback");
             cut.Markup.Should().Contain("Email");
             cut.Markup.Should().Contain("Phone Number");
@@ -77,6 +81,11 @@ namespace BlazorApp.NUnitTests
                     content.Should().Contain("Great service!");
                     content.Should().Contain("john.doe@example.com");
                     content.Should().Contain("1234567890");
+                    return Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.OK));
+                }
+
+                if (request.Method == HttpMethod.Post && request.RequestUri != null && request.RequestUri.ToString().Contains("api/SendFeedbackEmail"))
+                {
                     return Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.OK));
                 }
 
@@ -110,6 +119,11 @@ namespace BlazorApp.NUnitTests
                     return Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.OK) { Content = responseContent });
                 }
 
+                if (request.Method == HttpMethod.Post && request.RequestUri != null && request.RequestUri.ToString().Contains("api/SendFeedbackEmail"))
+                {
+                    return Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.OK));
+                }
+
                 return Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.NotFound));
             };
 
@@ -136,6 +150,11 @@ namespace BlazorApp.NUnitTests
                 {
                     var responseContent = new StringContent("{\"Text\":\"It was okay.\",\"Email\":\"john.doe@example.com\",\"PhoneNumber\":\"1234567890\",\"Sentiment\":\"neutral\"}");
                     return Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.OK) { Content = responseContent });
+                }
+
+                if (request.Method == HttpMethod.Post && request.RequestUri != null && request.RequestUri.ToString().Contains("api/SendFeedbackEmail"))
+                {
+                    return Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.OK));
                 }
 
                 return Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.NotFound));
@@ -166,6 +185,11 @@ namespace BlazorApp.NUnitTests
                     return Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.OK) { Content = responseContent });
                 }
 
+                if (request.Method == HttpMethod.Post && request.RequestUri != null && request.RequestUri.ToString().Contains("api/SendFeedbackEmail"))
+                {
+                    return Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.OK));
+                }
+
                 return Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.NotFound));
             };
 
@@ -183,6 +207,3 @@ namespace BlazorApp.NUnitTests
         }
     }
 }
-
-
-
