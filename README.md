@@ -189,7 +189,8 @@ CREATE TABLE dbo.UserFeedback (
     Sentiment NVARCHAR(50) NOT NULL
 );
 
-**Setup Data Builder API**
+**Setup Data Builder API**  
+**( not required as already setup , below are the steps that were followed for informational purpose)**
 - Use the swa db init command to generate a database configuration file.
 
   swa db init --database-type mssql
@@ -199,9 +200,6 @@ CREATE TABLE dbo.UserFeedback (
   dab add "UserFeedback" --source "dbo.UserFeedback" --permissions "anonymous:*" --config "swa-db-connections/staticwebapp.database.config.json"
 
 - Create the env variable for connection string and initialize connection string in previous step.
-
-
-
 
 ### Steps
 1. **Open the Solution**:
@@ -220,6 +218,26 @@ CREATE TABLE dbo.UserFeedback (
    
 ### Running Tests
 To run the unit tests, use the following command:**dotnet test**
+
+**Pushing Code to GitHub**
+- Go to GitHub and sign in with your GitHub account.
+- Click on the "+" icon in the top right corner and select "New repository".
+- Provide a name for your repository (e.g., AzureUserEntraIDApp).
+- Choose the visibility (public or private) and click "Create repository".
+- Push Your Project to GitHub:
+- Open your terminal or command prompt , Navigate to the root directory of your project.
+- Initialize a new Git repository:    **git init**
+- Add all files to the repository:    **git add .**
+- Commit the changes:       **git commit -m "Initial commit"**
+- Add the remote repository:      **git remote add origin https://github.com/yourusername/AzureUserEntraIDApp.git**
+- Push the changes to GitHub:      **git push -u origin main**
+
+     
+
+     
+
+
+
 
 
 ### Update Favicon
