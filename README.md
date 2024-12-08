@@ -228,9 +228,46 @@ To run the unit tests, use the following command:**dotnet test**
 - Open your terminal or command prompt , Navigate to the root directory of your project.
 - Initialize a new Git repository:    **git init**
 - Add all files to the repository:    **git add .**
-- Commit the changes:       **git commit -m "Initial commit"**
-- Add the remote repository:      **git remote add origin https://github.com/yourusername/AzureUserEntraIDApp.git**
-- Push the changes to GitHub:      **git push -u origin main**
+- Commit the changes:                 **git commit -m "Initial commit"**
+- Add the remote repository:          **git remote add origin https://github.com/yourusername/AzureUserEntraIDApp.git**
+- Push the changes to GitHub:         **git push -u origin main**
+- 
+
+**Deploying your Project to Azure**
+
+- Navigate to the Azure Portal.
+**New Static Web App**
+- Search for "Static Web App" and select **"Static Web App"**.
+- Click "Create" and fill in the required details:
+- Subscription: Select your Azure subscription.
+- Resource Group: Create a new resource group or select an existing one.
+- Name: Provide a name for your Static Web App.
+- Region: Select a region.
+- **Deployment Details**: Choose "GitHub" as the deployment source and authenticate with your GitHub account.
+- **Repository**: Select your GitHub repository and branch.
+- Build Details:
+- **App location**: ./AzureUserEntraIDApp
+- **Api location**: ./Api
+- **Output location**: wwwroot
+- Review your settings and click **"Create"**.
+
+**Configure the Static Web App**
+
+**1.Add Database connection(preview)**
+Use the following steps to create a connection between the Static Web Apps instance of your site and your database.
+
+
+- In the Settings section, select Database connection.
+- Under the Production section, select the Link existing database link.
+- In the Link existing database window, enter the following values:
+- Database Type	Select your database type from the dropdown list.
+- **Subscription**	Select your Azure subscription from the dropdown list.
+- **Resource Group**	Select or create a resource group for your database.
+- **Resource Name**	Select the database server name that has your desired database.
+- **Database Name**	Select the name of the database you want to link to your static web app.
+- **Authentication** Type	Select **Connection string**, and enter the Azure SQL user name and password.
+ - Select OK.
+
 
      
 
