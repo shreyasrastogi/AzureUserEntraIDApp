@@ -120,9 +120,9 @@ Open the `local.settings.json` file and add the necessary configuration settings
 - **Values**: Contains key-value pairs for various configuration settings.
   - **AzureWebJobsStorage**: Connection string for Azure Storage. Use `UseDevelopmentStorage=true` for local development.
   - **FUNCTIONS_WORKER_RUNTIME**: Specifies the runtime for Azure Functions. Set to `dotnet-isolated` for .NET isolated process.
-  - **ClientId**: The client ID of your Azure AD application.
-  - **TenantId**: The tenant ID of your Azure AD.
-  - **ClientSecret**: The client secret of your Azure AD application.
+  - **ClientId**: The client ID of your Azure Entra ID application.
+  - **TenantId**: The tenant ID of your Azure Entra ID.
+  - **ClientSecret**: The client secret of your Azure Entra ID application.
   - **SentimentAnalysisApiKey**: The API key for the sentiment analysis service.
   - **SentimentAnalysisEndpoint**: The endpoint URL for the sentiment analysis service.
 - **Host**: Contains settings for the local host.
