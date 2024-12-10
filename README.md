@@ -4,6 +4,10 @@ AzureUserEntraIDApp is a Blazor WebAssembly application that provides functional
 
 **Azure Components used in this solution** - Azure Static Web Apps , Azure Functions , SQL Server Database ,  Entra ID , Micrsoft Graph API , Micrsoft Data Builder API , Azure AI Language
 
+## Architecture overview
+
+<img src="Images/ProjectArchitecture.jpeg" width="1000"/>
+
 ## Features
 
 - **Display All Users**: View a list of all users.
@@ -335,6 +339,11 @@ For any questions or feedback, please reach out to [shreyasrastogi@gmail.com](ma
 - https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/quickstart?tabs=windows&pivots=programming-language-csharp
 - https://learn.microsoft.com/en-us/azure/static-web-apps/apis-functions
 - https://learn.microsoft.com/en-us/azure/data-api-builder/
+  
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[architecture-screenshot]: images/Fabric_AI_Food_Waste_Architecture.png
 
 
 
