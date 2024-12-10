@@ -362,7 +362,7 @@ NA
 
 ## Contact
 
-For any questions or feedback, please reach out to [shreyasrastogi@gmail.com](mailto:shreyasrastogi@gmail.com).
+For any questions or feedback, please reach out to [shreyasrastogi@gmail.com](mailto:shreyasrastogi@gmail.com) , [mehtaurvashi123@gmail.com](mailto:mehtaurvashi123@gmail.com) .
 
 ### Reference 
 - https://learn.microsoft.com/en-us/azure/static-web-apps/overview
