@@ -233,6 +233,19 @@ CREATE TABLE dbo.UserFeedback (
 
 - Create the env variable for connection string and initialize connection string in previous step.
 
+  **Creating a Azure communication services resource**
+-  Navigate to the Azure Portal.
+-  Create a Cognitive Services Resource
+-  Search "Communication services"
+-  Click on "create" and then fill out the details
+-  Once the resource is created , navigate -> email -> Try Email
+-  Go to "Send Email From" Dropdown then select "setup a Free Azure Doamin" then fill out the details.
+-  Once setup is done "Send Email from" will be populated , try to send a test mail.
+-  Go to Settings->Keys-> Copy Connection String
+-  
+  
+
+
 ### Steps
 1. **Open the Solution**:
    Open the solution in Visual Studio.
@@ -309,6 +322,7 @@ Use the following steps to create a connection between the Static Web Apps insta
    - **SentimentAnalysisEndpoint**  - Refer to  Sentiment Ananlysis API Endpoint Setup step for this url
    - **SentimentAnalysisApiKey**    - Refer to  Sentiment Ananlysis API Endpoint Setup step for this key
    - **DATABASECONNECTIONSTRING**   - Refer to SQL Database to obtain the connection string
+   - **AzureCommunicationServicesConnectionString** - Refer to Azure Communication service step to obtain the connection string 
   
    **3. Add a custom Domain (Optional)**
    - Click on "Custom Domains"
