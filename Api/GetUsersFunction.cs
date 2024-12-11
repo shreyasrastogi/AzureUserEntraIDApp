@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -42,9 +43,12 @@ namespace API
                     var graphResponse = JsonConvert.DeserializeObject<GraphResponse>(usersJson);
                     var users = graphResponse.Value;
 
+                    // Filter out users whose department is "Admin"
+                    var filteredUsers = users.Where(user => user.Department != "Admin").ToList();
+
                     var successResponse = req.CreateResponse(HttpStatusCode.OK);
                     successResponse.Headers.Add("Content-Type", "application/json");
-                    await successResponse.WriteStringAsync(JsonConvert.SerializeObject(users));
+                    await successResponse.WriteStringAsync(JsonConvert.SerializeObject(filteredUsers));
                     return successResponse;
                 }
                 else
@@ -97,8 +101,3 @@ namespace API
         }
     }
 }
-
-
-
-
-
