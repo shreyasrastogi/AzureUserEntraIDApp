@@ -1,8 +1,26 @@
-# AzureUserEntraIDApp
 
-AzureUserEntraIDApp is a Blazor WebAssembly application that provides functionalities for managing users in an **Azure environment**. The application allows users to **display, create, modify, disable, and delete user accounts** in **Entra ID** using **Graph API** . It also includes a feedback form for users to submit their feedback ,then do **Sentiment Analysis** using **Azure AI Language** and then save the feedback,sentiment,user email and phone number to **SQL Server Database** using **Data API**
 
-**Azure Components used in this solution** - Azure Static Web Apps , Azure Functions , SQL Server Database ,  Entra ID , Micrsoft Graph API , Micrsoft Data Builder API , Azure AI Language
+# Use Case
+
+**Programming Parrot Corp** is going through an expansion phase. There are lot of users joining in different departments spread across different locations and also there are lot of seasonal wokers joining.
+Programming Parrot Corp uses Entra ID for authentication and to provide access to various SAAS Applications . Now Once the User joins diffferent department managers raise requests for user accounts in Entra ID.
+Entra ID admins is pretty swamped with requests and there is a backlog of requests to create user accounts which is causing delay  in user account creation or modification for exisitng users.
+Programming Parrot Corp is looking for a Solution which can be rolled out to users acorss different locations where tasks can be performed in self serve mode.
+
+Programming Parrot Corp also wants to rollout solution **faster , easy to maintain  and keep the solution cost low** .
+
+
+
+# Solution - AzureUserEntraIDApp
+
+**AzureUserEntraIDApp** is a Blazor WebAssembly application that provides functionalities for managing users in an **Azure environment**. The application allows users to **display, create, modify, disable, and delete user accounts** in **Entra ID** using **Graph API** . It also includes a feedback form for users to submit their feedback ,then do **Sentiment Analysis** using **Azure AI Language** and then save the feedback,sentiment,user email and phone number to **SQL Server Database** using **Data API**
+
+**Azure Components used in this solution** - 
+- **Azure Static Web Apps , Azure Functions , Entra ID , Azure AI Language , Micrsoft Graph API , SQL Server Database , Microsoft Data Builder API**
+
+## Architecture overview
+
+<img src="Images/ProjectArchitecture.jpeg" width="1000"/>
 
 ## Features
 
@@ -11,9 +29,11 @@ AzureUserEntraIDApp is a Blazor WebAssembly application that provides functional
 - **Modify User**: Edit existing user in Azure Entra ID using Graph API
 - **Disable User**: Disable a user account  in Azure Entra ID using Graph API
 - **Delete User**: Remove a user account  in Azure Entra ID using Graph API
+- **Reset User Password**: Reset password for user
 - **Feedback**: Submit feedback about the application.
 - **Sentiment Analysis**: Sentiment Analysis of user sentiment using **Azure AI Language**.
 - **SaveFeedback to SQL Server DB**: Save Feedback , user email and user phone number to MS SQL Server DB using **Data API** .
+- **Send FeedBack Email**: Sending email to user with feedback and response based on sentiment analysis.  
 
 ## Getting Started
 
@@ -35,6 +55,7 @@ AzureUserEntraIDApp is a Blazor WebAssembly application that provides functional
     - `EditUser.razor`: Component for modifying exisitng user.
     - `DisableUser.razor`: Component for Disabling existing account.
     - `DeleteUser.razor`: Component for deleting a user account.
+    - `ResetUserPassword.razor`: Component for resetting password for user account.
   - **Shared**: Contains shared components and layouts.
     - `MainLayout.razor`: Main layout component.
     - `NavMenu.razor`: Navigation menu component.
@@ -49,6 +70,7 @@ AzureUserEntraIDApp is a Blazor WebAssembly application that provides functional
     - `CreateUserTests.cs`: Unit tests for the `CreateUser.razor` component.
     - `EditUserTests.cs`: Unit tests for the `EditUser.razor` component.
     - `HomeTests.cs`: Unit tests for the `Home.razor` component.
+    - `ResetUserPasswordTests.cs`: Unit tests for the `ResetUserPassword.razor` component.
 
  
 - **API Project**: The API project is an Azure Functions project targeting .NET 8. It includes various functions for handling user-related operations and feedback processing. The project leverages Microsoft Graph API for user management and integrates with Azure for authentication and authorization.
@@ -60,6 +82,7 @@ AzureUserEntraIDApp is a Blazor WebAssembly application that provides functional
 - **GetUsersFunction.cs**: Retrieves a list of users.
 - **DeleteUserFunction.cs**: Handles the deletion of user accounts.
 - **UserFeedbackFunction.cs**: Processes user feedback and performs sentiment analysis.
+- **SendFeedbackEmailFunction.cs**: Sends feedback entered by user and feedback response based on sentiment analysis.
 
 ### Models
 - **NewUser.cs**: Represents the data model for a new user.
@@ -210,6 +233,19 @@ CREATE TABLE dbo.UserFeedback (
 
 - Create the env variable for connection string and initialize connection string in previous step.
 
+  **Creating a Azure communication services resource**
+-  Navigate to the Azure Portal.
+-  Create a Cognitive Services Resource
+-  Search "Communication services"
+-  Click on "create" and then fill out the details
+-  Once the resource is created , navigate -> email -> Try Email
+-  Go to "Send Email From" Dropdown then select "setup a Free Azure Doamin" then fill out the details.
+-  Once setup is done "Send Email from" will be populated , try to send a test mail.
+-  Go to Settings->Keys-> Copy Connection String
+-  
+  
+
+
 ### Steps
 1. **Open the Solution**:
    Open the solution in Visual Studio.
@@ -286,6 +322,7 @@ Use the following steps to create a connection between the Static Web Apps insta
    - **SentimentAnalysisEndpoint**  - Refer to  Sentiment Ananlysis API Endpoint Setup step for this url
    - **SentimentAnalysisApiKey**    - Refer to  Sentiment Ananlysis API Endpoint Setup step for this key
    - **DATABASECONNECTIONSTRING**   - Refer to SQL Database to obtain the connection string
+   - **AzureCommunicationServicesConnectionString** - Refer to Azure Communication service step to obtain the connection string 
   
    **3. Add a custom Domain (Optional)**
    - Click on "Custom Domains"
@@ -325,7 +362,7 @@ NA
 
 ## Contact
 
-For any questions or feedback, please reach out to [shreyasrastogi@gmail.com](mailto:shreyasrastogi@gmail.com).
+For any questions or feedback, please reach out to [shreyasrastogi@gmail.com](mailto:shreyasrastogi@gmail.com) , [mehtaurvashi123@gmail.com](mailto:mehtaurvashi123@gmail.com) .
 
 ### Reference 
 - https://learn.microsoft.com/en-us/azure/static-web-apps/overview
@@ -335,6 +372,12 @@ For any questions or feedback, please reach out to [shreyasrastogi@gmail.com](ma
 - https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/quickstart?tabs=windows&pivots=programming-language-csharp
 - https://learn.microsoft.com/en-us/azure/static-web-apps/apis-functions
 - https://learn.microsoft.com/en-us/azure/data-api-builder/
+- https://learn.microsoft.com/en-us/azure/communication-services/overview
+  
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[architecture-screenshot]: images/Fabric_AI_Food_Waste_Architecture.png
 
 
 
