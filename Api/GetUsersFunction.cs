@@ -57,6 +57,7 @@ namespace API
                     var errorResponse = req.CreateResponse(HttpStatusCode.InternalServerError);
                     await errorResponse.WriteStringAsync("Error retrieving users.");
                     return errorResponse;
+
                 }
             }
             catch (Exception ex)
