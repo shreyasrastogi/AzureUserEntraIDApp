@@ -95,9 +95,19 @@ namespace API
         {
             var patchObject = new JObject();
 
-            if (!string.Equals(incomingUser.DisplayName, existingUser.DisplayName))
+            if (!string.Equals(incomingUser.FirstName, existingUser.FirstName))
             {
-                patchObject["displayName"] = incomingUser.DisplayName;
+                patchObject["givenName"] = incomingUser.FirstName;
+            }
+
+            if (!string.Equals(incomingUser.LastName, existingUser.LastName))
+            {
+                patchObject["surname"] = incomingUser.LastName;
+            }
+
+            if (!string.Equals(incomingUser.UserPrincipalName, existingUser.UserPrincipalName))
+            {
+                patchObject["userPrincipalName"] = incomingUser.UserPrincipalName;
             }
 
             if (!string.Equals(incomingUser.MailNickname, existingUser.MailNickname))
@@ -105,7 +115,15 @@ namespace API
                 patchObject["mailNickname"] = incomingUser.MailNickname;
             }
 
-            // Add other fields as needed
+            if (!string.Equals(incomingUser.DisplayName, existingUser.DisplayName))
+            {
+                patchObject["displayName"] = incomingUser.DisplayName;
+            }
+
+            if (!string.Equals(incomingUser.Department, existingUser.Department))
+            {
+                patchObject["department"] = incomingUser.Department;
+            }
 
             return patchObject.ToString(Formatting.None);
         }
@@ -128,13 +146,14 @@ namespace API
 
         public class User
         {
-            public string DisplayName { get; set; }
-            public string MailNickname { get; set; }
+            [JsonProperty("givenName")]
+            public string FirstName { get; set; }
+            [JsonProperty("surname")]
+            public string LastName { get; set; }
             public string UserPrincipalName { get; set; }
+            public string MailNickname { get; set; }
+            public string DisplayName { get; set; }
+            public string Department { get; set; }
         }
     }
 }
-
-
-
-
