@@ -53,7 +53,8 @@ namespace API
                 {
                     forceChangePasswordNextSignIn = true,
                     password = data.Password
-                }
+                },
+                usageLocation = "CA"
             };
 
             var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");

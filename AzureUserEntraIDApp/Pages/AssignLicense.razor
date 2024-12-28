@@ -1,0 +1,108 @@
+﻿@page "/assignlicense"
+@inject HttpClient Http
+
+<h3>Assign License</h3>
+
+@if (successMessageVisible)
+{
+    <div class="alert alert-success" role="alert">
+        License assigned successfully.
+    </div>
+}
+
+@if (errorMessageVisible)
+{
+    <div class="alert alert-danger" role="alert">
+        @errorMessage
+    </div>
+}
+
+@if (users == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <EditForm Model="licenseRequest" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="mb-3">
+            <label for="userPrincipalName" class="form-label">Select User</label>
+            <InputSelect id="userPrincipalName" class="form-control" @bind-Value="licenseRequest.UserPrincipalName">
+                <option value="">Select a user</option>
+                @foreach (var user in users)
+                {
+                    <option value="@user.UserPrincipalName">@user.DisplayName (@user.UserPrincipalName)</option>
+                }
+            </InputSelect>
+        </div>
+        <div class="mb-3">
+            <label for="licenseType" class="form-label">License Type</label>
+            <InputSelect id="licenseType" class="form-control" @bind-Value="licenseRequest.LicenseType">
+                <option value="">Select a license</option>
+                <option value="M365_F1_COMM">Microsoft 365 F1</option>
+                <option value="SPE_F1">Microsoft 365 F3</option>
+            </InputSelect>
+        </div>
+        <button type="submit" class="btn btn-primary">Assign License</button>
+    </EditForm>
+}
+
+@code {
+    private LicenseRequest licenseRequest = new LicenseRequest();
+    private bool successMessageVisible = false;
+    private bool errorMessageVisible = false;
+    private string errorMessage;
+    private List<User> users;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            users = await Http.GetFromJsonAsync<List<User>>("/api/GetUsers");
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error loading users: {ex.Message}";
+            errorMessageVisible = true;
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        try
+        {
+            var response = await Http.PostAsJsonAsync("/api/AssignLicense", licenseRequest);
+            if (response.IsSuccessStatusCode)
+            {
+                successMessageVisible = true;
+                errorMessageVisible = false;
+            }
+            else
+            {
+                successMessageVisible = false;
+                errorMessageVisible = true;
+                errorMessage = await response.Content.ReadAsStringAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            successMessageVisible = false;
+            errorMessageVisible = true;
+            errorMessage = $"Error assigning license: {ex.Message}";
+        }
+    }
+
+    public class LicenseRequest
+    {
+        public string UserPrincipalName { get; set; }
+        public string LicenseType { get; set; }
+    }
+
+    public class User
+    {
+        public string DisplayName { get; set; }
+        public string UserPrincipalName { get; set; }
+    }
+}
