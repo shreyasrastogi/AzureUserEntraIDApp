@@ -15,9 +15,9 @@ namespace BlazorApp.NUnitTests
             var cut = RenderComponent<Home>();
 
             // Assert
-            cut.Markup.Should().Contain("Hello, users!");
+            cut.Markup.Should().Contain("Hello, Users!");
             cut.Markup.Should().Contain("Welcome to Technical Parrot Corp Entra ID Accounts & Access Site");
-            cut.Markup.Should().Contain("Actions you can perform on this site:");
+            cut.Markup.Should().Contain("Actions you can perform on this website:");
             cut.Markup.Should().Contain("Display All Users");
             cut.Markup.Should().Contain("Create User");
             cut.Markup.Should().Contain("Modify User");
