@@ -30,6 +30,7 @@ Programming Parrot Corp also wants to rollout solution **faster , easy to mainta
 - **Disable User**: Disable a user account  in Azure Entra ID using Graph API
 - **Delete User**: Remove a user account  in Azure Entra ID using Graph API
 - **Reset User Password**: Reset password for user
+- **Assign M365 License**: Assign M365 F1 /F3 Licence to the user
 - **Feedback**: Submit feedback about the application.
 - **Sentiment Analysis**: Sentiment Analysis of user sentiment using **Azure AI Language**.
 - **SaveFeedback to SQL Server DB**: Save Feedback , user email and user phone number to MS SQL Server DB using **Data API** .
@@ -56,9 +57,12 @@ Programming Parrot Corp also wants to rollout solution **faster , easy to mainta
     - `DisableUser.razor`: Component for Disabling existing account.
     - `DeleteUser.razor`: Component for deleting a user account.
     - `ResetUserPassword.razor`: Component for resetting password for user account.
+    - `AssignLicense.razor`: Assign M365 License to the user.
+          
   - **Shared**: Contains shared components and layouts.
     - `MainLayout.razor`: Main layout component.
     - `NavMenu.razor`: Navigation menu component.
+      
   - **wwwroot**: Contains static files such as CSS, JavaScript, and images.
     - `index.html`: The main HTML file for the Blazor WebAssembly application.
     - `logo.png`: The logo image used as the favicon
@@ -71,6 +75,7 @@ Programming Parrot Corp also wants to rollout solution **faster , easy to mainta
     - `EditUserTests.cs`: Unit tests for the `EditUser.razor` component.
     - `HomeTests.cs`: Unit tests for the `Home.razor` component.
     - `ResetUserPasswordTests.cs`: Unit tests for the `ResetUserPassword.razor` component.
+    - `AssignLicenseTests.cs`: Unit tests for the `AssignLicense.razor` component.
 
  
 - **API Project**: The API project is an Azure Functions project targeting .NET 8. It includes various functions for handling user-related operations and feedback processing. The project leverages Microsoft Graph API for user management and integrates with Azure for authentication and authorization.
@@ -82,6 +87,7 @@ Programming Parrot Corp also wants to rollout solution **faster , easy to mainta
 - **GetUsersFunction.cs**: Retrieves a list of users.
 - **DeleteUserFunction.cs**: Handles the deletion of user accounts.
 - **UserFeedbackFunction.cs**: Processes user feedback and performs sentiment analysis.
+- **AssignLicenseFunction.cs**: Assign M365 License F1 or F3 to the user.
 - **SendFeedbackEmailFunction.cs**: Sends feedback entered by user and feedback response based on sentiment analysis.
 
 ### Models
