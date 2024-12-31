@@ -248,7 +248,16 @@ CREATE TABLE dbo.UserFeedback (
 -  Go to "Send Email From" Dropdown then select "setup a Free Azure Doamin" then fill out the details.
 -  Once setup is done "Send Email from" will be populated , try to send a test mail.
 -  Go to Settings->Keys-> Copy Connection String
--  
+
+  **Getting M365 License to assign to user**
+-  Navigate to the Azure Portal.
+-  Search "Licenses"
+-  Click on "Go to M365 Admin Center"
+-  Navigate to Billing-> Your Products -> Add more Products
+-  Click on "All Products" and search F1 and then add Microsoft 365 F1 (Month to Month)
+-  User can enable trial for 25 Licenses
+-  Perform similar step for Microsoft 365 F3 amd enable trial if required 
+-  Once done you can assign Licenses using the Application once deployed.
   
 
 
