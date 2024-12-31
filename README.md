@@ -2,10 +2,10 @@
 
 # Use Case
 
-**Programming Parrot Corp** is going through an expansion phase. There are lot of users joining in different departments spread across different locations and also there are lot of seasonal wokers joining.
-Programming Parrot Corp uses Entra ID for authentication and to provide access to various SAAS Applications . Now Once the User joins diffferent department managers raise requests for user accounts in Entra ID.
-Entra ID admins is pretty swamped with requests and there is a backlog of requests to create user accounts which is causing delay  in user account creation or modification for exisitng users.
-Programming Parrot Corp is looking for a Solution which can be rolled out to users acorss different locations where tasks can be performed in self serve mode.
+**Programming Parrot Corp** is going through an expansion phase. There are lot of users joining in different departments spread across different locations and also there are lot of seasonal workers joining.
+Programming Parrot Corp uses Entra ID for authentication and to provide access to various SAAS Applications . Now Once the User joins different department managers raise requests for user accounts in Entra ID.
+Entra ID admins is swamped with requests and there is a backlog of requests to create user accounts which is causing delay  in user account creation or modification for existing users.
+Programming Parrot Corp is looking for a Solution which can be rolled out to users across different locations where tasks can be performed in self serve mode.
 
 Programming Parrot Corp also wants to rollout solution **faster , easy to maintain  and keep the solution cost low** .
 
