@@ -30,6 +30,7 @@ Programming Parrot Corp also wants to rollout solution **faster , easy to mainta
 - **Disable User**: Disable a user account  in Azure Entra ID using Graph API
 - **Delete User**: Remove a user account  in Azure Entra ID using Graph API
 - **Reset User Password**: Reset password for user
+- **Assign M365 License**: Assign M365 F1 /F3 Licence to the user
 - **Feedback**: Submit feedback about the application.
 - **Sentiment Analysis**: Sentiment Analysis of user sentiment using **Azure AI Language**.
 - **SaveFeedback to SQL Server DB**: Save Feedback , user email and user phone number to MS SQL Server DB using **Data API** .
@@ -56,9 +57,12 @@ Programming Parrot Corp also wants to rollout solution **faster , easy to mainta
     - `DisableUser.razor`: Component for Disabling existing account.
     - `DeleteUser.razor`: Component for deleting a user account.
     - `ResetUserPassword.razor`: Component for resetting password for user account.
+    - `AssignLicense.razor`: Assign M365 License to the user.
+          
   - **Shared**: Contains shared components and layouts.
     - `MainLayout.razor`: Main layout component.
     - `NavMenu.razor`: Navigation menu component.
+      
   - **wwwroot**: Contains static files such as CSS, JavaScript, and images.
     - `index.html`: The main HTML file for the Blazor WebAssembly application.
     - `logo.png`: The logo image used as the favicon
@@ -71,6 +75,7 @@ Programming Parrot Corp also wants to rollout solution **faster , easy to mainta
     - `EditUserTests.cs`: Unit tests for the `EditUser.razor` component.
     - `HomeTests.cs`: Unit tests for the `Home.razor` component.
     - `ResetUserPasswordTests.cs`: Unit tests for the `ResetUserPassword.razor` component.
+    - `AssignLicenseTests.cs`: Unit tests for the `AssignLicense.razor` component.
 
  
 - **API Project**: The API project is an Azure Functions project targeting .NET 8. It includes various functions for handling user-related operations and feedback processing. The project leverages Microsoft Graph API for user management and integrates with Azure for authentication and authorization.
@@ -82,6 +87,7 @@ Programming Parrot Corp also wants to rollout solution **faster , easy to mainta
 - **GetUsersFunction.cs**: Retrieves a list of users.
 - **DeleteUserFunction.cs**: Handles the deletion of user accounts.
 - **UserFeedbackFunction.cs**: Processes user feedback and performs sentiment analysis.
+- **AssignLicenseFunction.cs**: Assign M365 License F1 or F3 to the user.
 - **SendFeedbackEmailFunction.cs**: Sends feedback entered by user and feedback response based on sentiment analysis.
 
 ### Models
@@ -233,7 +239,7 @@ CREATE TABLE dbo.UserFeedback (
 
 - Create the env variable for connection string and initialize connection string in previous step.
 
-  **Creating a Azure communication services resource**
+ **Creating a Azure communication services resource**
 -  Navigate to the Azure Portal.
 -  Create a Cognitive Services Resource
 -  Search "Communication services"
@@ -242,7 +248,16 @@ CREATE TABLE dbo.UserFeedback (
 -  Go to "Send Email From" Dropdown then select "setup a Free Azure Doamin" then fill out the details.
 -  Once setup is done "Send Email from" will be populated , try to send a test mail.
 -  Go to Settings->Keys-> Copy Connection String
--  
+
+  **Getting M365 License to assign to user**
+-  Navigate to the Azure Portal.
+-  Search "Licenses"
+-  Click on "Go to M365 Admin Center"
+-  Navigate to Billing-> Your Products -> Add more Products
+-  Click on "All Products" and search F1 and then add Microsoft 365 F1 (Month to Month)
+-  User can enable trial for 25 Licenses
+-  Perform similar step for Microsoft 365 F3 amd enable trial if required 
+-  Once done you can assign Licenses using the Application once deployed.
   
 
 
@@ -373,12 +388,3 @@ For any questions or feedback, please reach out to [shreyasrastogi@gmail.com](ma
 - https://learn.microsoft.com/en-us/azure/static-web-apps/apis-functions
 - https://learn.microsoft.com/en-us/azure/data-api-builder/
 - https://learn.microsoft.com/en-us/azure/communication-services/overview
-  
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[architecture-screenshot]: images/Fabric_AI_Food_Waste_Architecture.png
-
-
-
-    
