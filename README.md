@@ -239,7 +239,7 @@ CREATE TABLE dbo.UserFeedback (
 
 - Create the env variable for connection string and initialize connection string in previous step.
 
-  **Creating a Azure communication services resource**
+ **Creating a Azure communication services resource**
 -  Navigate to the Azure Portal.
 -  Create a Cognitive Services Resource
 -  Search "Communication services"
